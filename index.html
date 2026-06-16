@@ -7,8 +7,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function() {
+  try {
+    var saved = localStorage.getItem('marketPulseTheme');
+    if (saved === 'light' || saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  } catch (e) {}
+})();
+</script>
 <style>
-:root {
+:root, [data-theme="light"] {
   --bg-deep: #f7f6f2;
   --bg-card: #ffffff;
   --bg-card-hover: #fafaf7;
@@ -26,15 +36,64 @@
   --amber-dim: rgba(200,129,13,0.12);
   --blue: #2a72cc;
   --blue-dim: rgba(42,114,204,0.10);
+  --noise-opacity: 0.02;
+  --noise-blend: multiply;
+  --orb-opacity: 0.06;
   --font-display: 'Instrument Serif', serif;
   --font-body: 'Manrope', sans-serif;
   --font-mono: 'DM Mono', monospace;
 }
+[data-theme="dark"] {
+  --bg-deep: #0e0f12;
+  --bg-card: #16181d;
+  --bg-card-hover: #1c1f25;
+  --bg-surface: #21242b;
+  --border: rgba(255,255,255,0.08);
+  --border-accent: rgba(255,255,255,0.16);
+  --text-primary: #f0f1f3;
+  --text-secondary: #a8abb3;
+  --text-tertiary: #6b6f78;
+  --green: #2ecc8b;
+  --green-dim: rgba(46,204,139,0.16);
+  --red: #ee5a64;
+  --red-dim: rgba(238,90,100,0.14);
+  --amber: #e3a23a;
+  --amber-dim: rgba(227,162,58,0.16);
+  --blue: #5da4f2;
+  --blue-dim: rgba(93,164,242,0.14);
+  --noise-opacity: 0.04;
+  --noise-blend: screen;
+  --orb-opacity: 0.10;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-deep: #0e0f12;
+    --bg-card: #16181d;
+    --bg-card-hover: #1c1f25;
+    --bg-surface: #21242b;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(255,255,255,0.16);
+    --text-primary: #f0f1f3;
+    --text-secondary: #a8abb3;
+    --text-tertiary: #6b6f78;
+    --green: #2ecc8b;
+    --green-dim: rgba(46,204,139,0.16);
+    --red: #ee5a64;
+    --red-dim: rgba(238,90,100,0.14);
+    --amber: #e3a23a;
+    --amber-dim: rgba(227,162,58,0.16);
+    --blue: #5da4f2;
+    --blue-dim: rgba(93,164,242,0.14);
+    --noise-opacity: 0.04;
+    --noise-blend: screen;
+    --orb-opacity: 0.10;
+  }
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: var(--bg-deep); color: var(--text-primary); font-family: var(--font-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+html, body { background: var(--bg-deep); color: var(--text-primary); font-family: var(--font-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; transition: background-color .25s ease, color .25s ease; }
 body { position: relative; overflow-x: hidden; }
-.noise { position: fixed; inset: 0; pointer-events: none; opacity: 0.02; mix-blend-mode: multiply; z-index: 1; }
-.orb { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); opacity: 0.06; pointer-events: none; z-index: 0; }
+.noise { position: fixed; inset: 0; pointer-events: none; opacity: var(--noise-opacity); mix-blend-mode: var(--noise-blend); z-index: 1; }
+.orb { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); opacity: var(--orb-opacity); pointer-events: none; z-index: 0; }
 .orb-1 { background: var(--blue); top: -200px; left: -150px; }
 .orb-2 { background: var(--amber); bottom: -200px; right: -150px; }
 .container { max-width: 1240px; margin: 0 auto; padding: 56px 40px 80px; position: relative; z-index: 2; }
@@ -47,8 +106,20 @@ a:hover { color: var(--blue); border-bottom-color: var(--blue); }
 .hero-title { font-family: var(--font-display); font-size: 50px; line-height: 1.15; color: var(--text-primary); margin-bottom: 8px; }
 .hero-sub { font-size: 17px; color: var(--text-secondary); margin-top: 4px; }
 .hero-date { font-family: var(--font-mono); font-size: 13px; color: var(--text-tertiary); margin-top: 18px; letter-spacing: 0.06em; }
+.header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
 .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--border-accent); border-radius: 999px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-secondary); background: var(--bg-card); }
 .status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
+.theme-toggle { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid var(--border-accent); border-radius: 999px; background: var(--bg-card); color: var(--text-secondary); cursor: pointer; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; transition: background .2s, color .2s, border-color .2s; }
+.theme-toggle:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--text-tertiary); }
+.theme-toggle svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .icon-sun, .theme-toggle .label-sun { display: none; }
+.theme-toggle .icon-moon, .theme-toggle .label-moon { display: inline-flex; }
+[data-theme="dark"] .theme-toggle .icon-sun, [data-theme="dark"] .theme-toggle .label-sun { display: inline-flex; }
+[data-theme="dark"] .theme-toggle .icon-moon, [data-theme="dark"] .theme-toggle .label-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun, :root:not([data-theme="light"]) .theme-toggle .label-sun { display: inline-flex; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon, :root:not([data-theme="light"]) .theme-toggle .label-moon { display: none; }
+}
 
 /* Section */
 .section { margin-bottom: 56px; }
@@ -199,7 +270,15 @@ a:hover { color: var(--blue); border-bottom-color: var(--blue); }
       <div class="hero-sub">伊朗和平协议引爆涨势，油价重挫、科技股领涨创新高</div>
       <div class="hero-date">MONDAY · JUN 15, 2026 · CLOSE · NEW YORK</div>
     </div>
-    <div class="status-badge"><span class="status-dot"></span>MARKET CLOSED · 收盘</div>
+    <div class="header-right">
+      <div class="status-badge"><span class="status-dot"></span>MARKET CLOSED · 收盘</div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <span class="label-moon">DARK · 夜间</span>
+        <span class="label-sun">LIGHT · 日间</span>
+      </button>
+    </div>
   </header>
 
   <!-- MAJOR INDICES -->
@@ -586,5 +665,23 @@ a:hover { color: var(--blue); border-bottom-color: var(--blue); }
   </footer>
 
 </div>
+<script>
+(function() {
+  var root = document.documentElement;
+  function current() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  var btn = document.getElementById('themeToggle');
+  if (btn) {
+    btn.addEventListener('click', function() {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('marketPulseTheme', next); } catch (e) {}
+    });
+  }
+})();
+</script>
 </body>
 </html>
