@@ -245,13 +245,78 @@ a:hover { color: var(--blue); border-bottom-color: var(--blue); }
 .footer { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-tertiary); line-height: 1.7; font-family: var(--font-mono); letter-spacing: 0.04em; }
 
 @media (max-width: 980px) {
+  .container { padding: 40px 24px 60px; }
   .index-grid, .cross-grid { grid-template-columns: repeat(2, 1fr); }
   .stock-grid { grid-template-columns: repeat(2, 1fr); }
   .deep-grid, .movers-grid, .analyst-grid, .bottom-line { grid-template-columns: 1fr; }
-  .macro-strip { grid-template-columns: repeat(2, 1fr); }
+  .macro-strip { grid-template-columns: repeat(3, 1fr); }
   .hero-title { font-size: 38px; }
   .section-title { font-size: 26px; }
   .gauge-wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .container { padding: 28px 14px 60px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 18px; margin-bottom: 36px; padding-bottom: 22px; }
+  .header-right { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; width: 100%; }
+  .brand { margin-bottom: 14px; }
+  .hero-title { font-size: 28px; line-height: 1.2; }
+  .hero-sub { font-size: 14px; }
+  .hero-date { font-size: 11px; margin-top: 12px; }
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 21px; }
+  .section-sub { font-size: 11px; margin-bottom: 16px; }
+  .index-grid, .cross-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .index-card { padding: 14px 14px; }
+  .idx-value { font-size: 24px; margin-top: 8px; }
+  .idx-name { font-size: 15px; }
+  .idx-change { font-size: 12px; }
+  .macro-strip { grid-template-columns: 1fr 1fr; gap: 10px 14px; padding: 16px 16px; }
+  .macro-value { font-size: 17px; }
+  .macro-label { font-size: 10px; }
+  .macro-change { font-size: 11px; }
+  .stock-grid { gap: 8px; }
+  .stock-card { padding: 12px 12px; }
+  .stk-price { font-size: 16px; margin-top: 6px; }
+  .stk-change { font-size: 11px; }
+  .timeline { padding: 18px 16px; }
+  .timeline-item { grid-template-columns: 78px 1fr; gap: 10px; padding: 12px 0; }
+  .time-tag { font-size: 11px; }
+  .event-text { font-size: 13px; }
+  .event-text .cn { font-size: 12px; }
+  .gauge-wrap { padding: 20px 16px; gap: 18px; }
+  .gauge-meta { font-size: 13px; }
+  .gauge-meta strong { font-size: 20px; }
+  .movers-card, .deep-card, .analyst-card { padding: 18px 16px; }
+  .movers-title { font-size: 18px; }
+  .mover-row { grid-template-columns: 68px 1fr auto; gap: 8px; font-size: 13px; padding: 8px 0; }
+  .mover-name { font-size: 12px; }
+  .ticker, .mover-pct { font-size: 13px; }
+  .sector-bars { padding: 18px 14px; }
+  .sector-row { grid-template-columns: 124px 1fr 56px; gap: 8px; }
+  .sector-label { font-size: 12px; }
+  .sector-label .cn { font-size: 10px; margin-left: 4px; }
+  .sector-pct { font-size: 11px; }
+  .bar-track { height: 10px; }
+  .deep-title { font-size: 19px; }
+  .deep-body { font-size: 13px; }
+  .deep-body .cn { font-size: 12px; }
+  .analyst-quote { font-size: 14px; }
+  .analyst-quote .cn { font-size: 12px; }
+  .cal-table { font-size: 12px; }
+  .cal-row, .cal-row.header { grid-template-columns: 1fr; gap: 4px; padding: 12px 16px; }
+  .cal-row.header { display: none; }
+  .cal-row { border-bottom: 1px solid var(--border); }
+  .cal-date { font-size: 11px; color: var(--text-tertiary); }
+  .cal-name { font-size: 14px; }
+  .cal-est { font-size: 11px; }
+  .themes-list { padding: 18px 16px; }
+  .theme-item { grid-template-columns: 24px 1fr; gap: 10px; padding: 12px 0; }
+  .theme-num { font-size: 18px; }
+  .theme-body { font-size: 13px; }
+  .theme-body .cn { font-size: 12px; }
+  .bottom-line { padding: 22px 18px; gap: 18px; }
+  .bl-block { font-size: 13px; }
+  .footer { font-size: 11px; }
 }
 </style>
 </head>
