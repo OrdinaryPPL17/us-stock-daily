@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Market Pulse · 每日市场简报 · Jun 15, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #f7f6f2;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fafaf7;
+  --bg-surface: #f2f0ea;
+  --border: rgba(0,0,0,0.08);
+  --border-accent: rgba(0,0,0,0.14);
+  --text-primary: #1a1b1f;
+  --text-secondary: #5a5d64;
+  --text-tertiary: #8a8d92;
+  --green: #0aa06a;
+  --green-dim: rgba(10,160,106,0.12);
+  --red: #d4323c;
+  --red-dim: rgba(212,50,60,0.10);
+  --amber: #c8810d;
+  --amber-dim: rgba(200,129,13,0.12);
+  --blue: #2a72cc;
+  --blue-dim: rgba(42,114,204,0.10);
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg-deep); color: var(--text-primary); font-family: var(--font-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+body { position: relative; overflow-x: hidden; }
+.noise { position: fixed; inset: 0; pointer-events: none; opacity: 0.02; mix-blend-mode: multiply; z-index: 1; }
+.orb { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); opacity: 0.06; pointer-events: none; z-index: 0; }
+.orb-1 { background: var(--blue); top: -200px; left: -150px; }
+.orb-2 { background: var(--amber); bottom: -200px; right: -150px; }
+.container { max-width: 1240px; margin: 0 auto; padding: 56px 40px 80px; position: relative; z-index: 2; }
+a { color: var(--text-primary); text-decoration: none; border-bottom: 1px dotted var(--border-accent); }
+a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+
+/* Header */
+.header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+.brand { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 24px; }
+.hero-title { font-family: var(--font-display); font-size: 50px; line-height: 1.15; color: var(--text-primary); margin-bottom: 8px; }
+.hero-sub { font-size: 17px; color: var(--text-secondary); margin-top: 4px; }
+.hero-date { font-family: var(--font-mono); font-size: 13px; color: var(--text-tertiary); margin-top: 18px; letter-spacing: 0.06em; }
+.status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--border-accent); border-radius: 999px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-secondary); background: var(--bg-card); }
+.status-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); }
+
+/* Section */
+.section { margin-bottom: 56px; }
+.section-title { font-family: var(--font-display); font-size: 31px; line-height: 1.2; margin-bottom: 6px; }
+.section-sub { font-size: 14px; color: var(--text-tertiary); letter-spacing: 0.04em; font-family: var(--font-mono); margin-bottom: 24px; text-transform: uppercase; }
+
+/* Index grid */
+.index-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.index-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: background .2s, border-color .2s; }
+.index-card:hover { background: var(--bg-card-hover); border-color: var(--border-accent); }
+.idx-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-tertiary); text-transform: uppercase; }
+.idx-name { font-family: var(--font-display); font-size: 20px; margin-top: 4px; color: var(--text-primary); }
+.idx-value { font-family: var(--font-mono); font-size: 38px; margin-top: 14px; color: var(--text-primary); }
+.idx-change { font-family: var(--font-mono); font-size: 15px; margin-top: 6px; }
+.up { color: var(--green); }
+.down { color: var(--red); }
+.flat { color: var(--text-secondary); }
+
+/* Macro strip */
+.macro-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; }
+.macro-item { display: flex; flex-direction: column; gap: 4px; }
+.macro-label { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); letter-spacing: 0.08em; text-transform: uppercase; }
+.macro-value { font-family: var(--font-mono); font-size: 22px; color: var(--text-primary); }
+.macro-change { font-family: var(--font-mono); font-size: 13px; }
+
+/* Timeline */
+.timeline { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 32px; }
+.timeline-item { display: grid; grid-template-columns: 110px 1fr; gap: 24px; padding: 14px 0; border-bottom: 1px dashed var(--border); }
+.timeline-item:last-child { border-bottom: none; }
+.time-tag { font-family: var(--font-mono); font-size: 13px; color: var(--text-tertiary); letter-spacing: 0.06em; }
+.event-text { font-size: 16px; line-height: 1.6; color: var(--text-primary); }
+.event-text .cn { display: block; color: var(--text-secondary); font-size: 14px; margin-top: 4px; }
+
+/* Sentiment gauge */
+.gauge-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 32px; display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: center; }
+.gauge { position: relative; height: 16px; background: var(--bg-surface); border-radius: 999px; overflow: hidden; }
+.gauge-fill { position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(90deg, var(--red), var(--amber), var(--green)); border-radius: 999px; }
+.gauge-marker { position: absolute; top: -6px; width: 4px; height: 28px; background: var(--text-primary); border-radius: 2px; }
+.gauge-scale { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); margin-top: 8px; letter-spacing: 0.06em; }
+.gauge-meta { font-size: 14px; color: var(--text-secondary); }
+.gauge-meta strong { color: var(--text-primary); display: block; font-family: var(--font-display); font-size: 26px; margin-bottom: 4px; }
+
+/* Movers grid */
+.movers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.movers-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+.movers-title { font-family: var(--font-display); font-size: 22px; margin-bottom: 14px; }
+.mover-row { display: grid; grid-template-columns: 80px 1fr auto; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 15px; align-items: center; }
+.mover-row:last-child { border-bottom: none; }
+.ticker { font-family: var(--font-mono); font-size: 14px; }
+.mover-name { color: var(--text-secondary); font-size: 14px; }
+.mover-pct { font-family: var(--font-mono); font-size: 15px; text-align: right; }
+
+/* Sectors bar */
+.sector-bars { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 32px; }
+.sector-row { display: grid; grid-template-columns: 180px 1fr 80px; gap: 16px; align-items: center; padding: 8px 0; }
+.sector-label { font-size: 15px; color: var(--text-primary); }
+.sector-label .cn { color: var(--text-tertiary); font-size: 12px; margin-left: 6px; }
+.bar-track { background: var(--bg-surface); height: 14px; border-radius: 999px; position: relative; overflow: hidden; }
+.bar-center { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--border-accent); }
+.bar-fill { position: absolute; top: 0; bottom: 0; border-radius: 999px; }
+.bar-fill.pos { background: var(--green); left: 50%; }
+.bar-fill.neg { background: var(--red); right: 50%; }
+.sector-pct { font-family: var(--font-mono); font-size: 14px; text-align: right; }
+
+/* Cross asset */
+.cross-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cross-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; }
+.cross-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-tertiary); text-transform: uppercase; }
+.cross-value { font-family: var(--font-mono); font-size: 29px; margin-top: 12px; }
+.cross-change { font-family: var(--font-mono); font-size: 14px; margin-top: 4px; }
+.cross-note { font-size: 13px; color: var(--text-secondary); margin-top: 8px; }
+
+/* 2x2 deep */
+.deep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.deep-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 26px 28px; }
+.deep-title { font-family: var(--font-display); font-size: 24px; margin-bottom: 10px; }
+.deep-body { font-size: 15px; color: var(--text-secondary); line-height: 1.65; }
+.deep-body .cn { display: block; color: var(--text-tertiary); margin-top: 6px; font-size: 14px; }
+
+/* Analyst 2col */
+.analyst-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.analyst-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px 26px; border-left: 3px solid var(--blue); }
+.analyst-src { font-family: var(--font-mono); font-size: 12px; color: var(--blue); letter-spacing: 0.06em; text-transform: uppercase; }
+.analyst-quote { font-size: 16px; color: var(--text-primary); margin-top: 10px; line-height: 1.6; }
+.analyst-quote .cn { display: block; color: var(--text-secondary); font-size: 14px; margin-top: 6px; }
+
+/* Stock grid 12 */
+.stock-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.stock-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px; }
+.stk-ticker { font-family: var(--font-mono); font-size: 14px; font-weight: 500; }
+.stk-name { font-size: 13px; color: var(--text-tertiary); margin-top: 2px; }
+.stk-price { font-family: var(--font-mono); font-size: 19px; margin-top: 10px; }
+.stk-change { font-family: var(--font-mono); font-size: 13px; margin-top: 2px; }
+
+/* Themes list */
+.themes-list { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 32px; }
+.theme-item { display: grid; grid-template-columns: 32px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px dashed var(--border); }
+.theme-item:last-child { border-bottom: none; }
+.theme-num { font-family: var(--font-display); font-size: 24px; color: var(--blue); }
+.theme-body { font-size: 16px; line-height: 1.6; }
+.theme-body strong { color: var(--text-primary); }
+.theme-body .cn { display: block; color: var(--text-secondary); margin-top: 4px; font-size: 14px; }
+
+/* Calendar table */
+.cal-table { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.cal-row { display: grid; grid-template-columns: 110px 110px 1fr auto; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--border); font-size: 15px; align-items: center; }
+.cal-row:last-child { border-bottom: none; }
+.cal-row.header { background: var(--bg-surface); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-tertiary); text-transform: uppercase; padding: 12px 24px; }
+.cal-date { font-family: var(--font-mono); font-size: 14px; color: var(--text-secondary); }
+.cal-ticker { font-family: var(--font-mono); font-size: 14px; }
+.cal-name { font-size: 15px; color: var(--text-primary); }
+.cal-est { font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); }
+
+/* Bottom Line */
+.bottom-line { background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: 14px; padding: 32px 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.bl-block { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+.bl-block .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.bl-block.bull .label { color: var(--green); }
+.bl-block.bear .label { color: var(--red); }
+.bl-block strong { color: var(--text-primary); }
+
+/* Footer */
+.footer { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-tertiary); line-height: 1.7; font-family: var(--font-mono); letter-spacing: 0.04em; }
+
+@media (max-width: 980px) {
+  .index-grid, .cross-grid { grid-template-columns: repeat(2, 1fr); }
+  .stock-grid { grid-template-columns: repeat(2, 1fr); }
+  .deep-grid, .movers-grid, .analyst-grid, .bottom-line { grid-template-columns: 1fr; }
+  .macro-strip { grid-template-columns: repeat(2, 1fr); }
+  .hero-title { font-size: 38px; }
+  .section-title { font-size: 26px; }
+  .gauge-wrap { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<svg class="noise"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div>
+      <div class="brand">Market Pulse · 每日市场简报</div>
+      <h1 class="hero-title">Iran Truce Sparks Risk-On Surge</h1>
+      <div class="hero-sub">伊朗和平协议引爆涨势，油价重挫、科技股领涨创新高</div>
+      <div class="hero-date">MONDAY · JUN 15, 2026 · CLOSE · NEW YORK</div>
+    </div>
+    <div class="status-badge"><span class="status-dot"></span>MARKET CLOSED · 收盘</div>
+  </header>
+
+  <!-- MAJOR INDICES -->
+  <section class="section">
+    <div class="section-title">Major Indices · 主要指数</div>
+    <div class="section-sub">U.S. Equity Benchmarks · Closing Levels</div>
+    <div class="index-grid">
+      <div class="index-card">
+        <div class="idx-label">S&amp;P 500</div>
+        <div class="idx-name">标普 500</div>
+        <div class="idx-value">7,554.29</div>
+        <div class="idx-change up">+122.5 · +1.65%</div>
+      </div>
+      <div class="index-card">
+        <div class="idx-label">Nasdaq Composite</div>
+        <div class="idx-name">纳斯达克综合</div>
+        <div class="idx-value">26,683.94</div>
+        <div class="idx-change up">+794.3 · +3.07%</div>
+      </div>
+      <div class="index-card">
+        <div class="idx-label">Dow Jones · Record</div>
+        <div class="idx-name">道琼斯工业</div>
+        <div class="idx-value">51,671.03</div>
+        <div class="idx-change up">+468.77 · +0.92%</div>
+      </div>
+      <div class="index-card">
+        <div class="idx-label">Russell 2000</div>
+        <div class="idx-name">罗素 2000</div>
+        <div class="idx-value">—</div>
+        <div class="idx-change up">+0.69%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MACRO STRIP -->
+  <section class="section">
+    <div class="section-title">Macro Strip · 宏观快讯</div>
+    <div class="section-sub">Rates · Commodities · Volatility</div>
+    <div class="macro-strip">
+      <div class="macro-item">
+        <div class="macro-label">WTI Crude · WTI 原油</div>
+        <div class="macro-value">$80.75</div>
+        <div class="macro-change down">-4.9%</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-label">Brent · 布伦特</div>
+        <div class="macro-value">$83.01</div>
+        <div class="macro-change down">-4.95%</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-label">10Y Treasury · 10年期国债</div>
+        <div class="macro-value">4.43%</div>
+        <div class="macro-change down">-7 bps</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-label">VIX · 恐慌指数</div>
+        <div class="macro-value">17.68</div>
+        <div class="macro-change down">-2.3</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-label">Gold · 黄金</div>
+        <div class="macro-value">$4,338.9</div>
+        <div class="macro-change up">+2.77%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT TIMELINE -->
+  <section class="section">
+    <div class="section-title">Event Timeline · 事件时间轴</div>
+    <div class="section-sub">Today's Key Catalysts</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time-tag">PRE-OPEN</div>
+        <div class="event-text">Trump announces 60-day U.S.–Iran framework to halt hostilities and reopen Strait of Hormuz.
+          <span class="cn">特朗普宣布美伊达成 60 天和平协议，霍尔木兹海峡重开。</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time-tag">09:30 ET</div>
+        <div class="event-text">Risk-on open: oil gaps lower 5%, tech and travel lead, defensives lag.
+          <span class="cn">风险偏好开盘：油价跳空下跌 5%，科技与出行股领涨，防御板块滞后。</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time-tag">MIDDAY</div>
+        <div class="event-text">SpaceX (SPCX) extends post-IPO rally; broad market touches new intraday highs.
+          <span class="cn">SpaceX 延续 IPO 后强势，大盘盘中刷新高位。</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time-tag">16:00 ET</div>
+        <div class="event-text">Dow closes at record 51,671; Nasdaq logs best session since March 31.
+          <span class="cn">道指收于 51,671 点的历史新高，纳指录得 3 月 31 日以来最佳单日表现。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SENTIMENT GAUGE -->
+  <section class="section">
+    <div class="section-title">Market Sentiment · 市场情绪</div>
+    <div class="section-sub">CNN Fear &amp; Greed · Approx. Reading</div>
+    <div class="gauge-wrap">
+      <div>
+        <div class="gauge">
+          <div class="gauge-fill"></div>
+          <div class="gauge-marker" style="left: 76%;"></div>
+        </div>
+        <div class="gauge-scale">
+          <span>FEAR</span><span>NEUTRAL</span><span>GREED</span>
+        </div>
+      </div>
+      <div class="gauge-meta">
+        <strong>76 · Extreme Greed · 极度贪婪</strong>
+        Risk appetite spiked on the Iran de-escalation and SpaceX debut afterglow. VIX fell ~12% to 17.68. Internals: 50.7% advancers vs. 46.7% decliners.<br>
+        伊朗局势缓和叠加 SpaceX 上市余温，恐慌指数大幅回落至 17.68；上涨股 50.7% 略胜下跌股 46.7%。
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP MOVERS -->
+  <section class="section">
+    <div class="section-title">Top Movers · 今日涨跌榜</div>
+    <div class="section-sub">Notable Single-Stock Moves</div>
+    <div class="movers-grid">
+      <div class="movers-card">
+        <div class="movers-title" style="color: var(--green);">▲ Top Gainers · 领涨</div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/XNDU/">XNDU</a></span><span class="mover-name">Xanadu Quantum</span><span class="mover-pct up">+18.24%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/WDC/">WDC</a></span><span class="mover-name">Western Digital</span><span class="mover-pct up">+16.10%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/AXTI/">AXTI</a></span><span class="mover-name">AXT Inc.</span><span class="mover-pct up">+13.95%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/CNL/">CNL</a></span><span class="mover-name">Collective Mining</span><span class="mover-pct up">+11.50%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/STX/">STX</a></span><span class="mover-name">Seagate Technology</span><span class="mover-pct up">+9.00%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/UAL/">UAL</a></span><span class="mover-name">United Airlines</span><span class="mover-pct up">+3.90%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/NCLH/">NCLH</a></span><span class="mover-name">Norwegian Cruise</span><span class="mover-pct up">+3.70%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/CCL/">CCL</a></span><span class="mover-name">Carnival</span><span class="mover-pct up">+3.20%</span></div>
+      </div>
+      <div class="movers-card">
+        <div class="movers-title" style="color: var(--red);">▼ Top Decliners · 领跌</div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/FOXA/">FOXA</a></span><span class="mover-name">Fox Corp. (A)</span><span class="mover-pct down">-16.84%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/FOX/">FOX</a></span><span class="mover-name">Fox Corp. (B)</span><span class="mover-pct down">-15.22%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/LRN/">LRN</a></span><span class="mover-name">Stride Inc.</span><span class="mover-pct down">-14.50%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/XOM/">XOM</a></span><span class="mover-name">Exxon Mobil</span><span class="mover-pct down">-2.4%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/CVX/">CVX</a></span><span class="mover-name">Chevron</span><span class="mover-pct down">-1.9%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/SLB/">SLB</a></span><span class="mover-name">Schlumberger</span><span class="mover-pct down">-3.1%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/COP/">COP</a></span><span class="mover-name">ConocoPhillips</span><span class="mover-pct down">-2.6%</span></div>
+        <div class="mover-row"><span class="ticker"><a href="https://finance.yahoo.com/quote/OXY/">OXY</a></span><span class="mover-name">Occidental</span><span class="mover-pct down">-3.4%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTOR BARS -->
+  <section class="section">
+    <div class="section-title">Sector Performance · 板块表现</div>
+    <div class="section-sub">11 GICS Sectors · Daily % Change (Est.)</div>
+    <div class="sector-bars">
+      <div class="sector-row"><div class="sector-label">Technology <span class="cn">科技</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 35%;"></div></div><div class="sector-pct up">+2.86%</div></div>
+      <div class="sector-row"><div class="sector-label">Communication Svcs <span class="cn">通信服务</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 30%;"></div></div><div class="sector-pct up">+2.45%</div></div>
+      <div class="sector-row"><div class="sector-label">Consumer Discretionary <span class="cn">非必需消费</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 28%;"></div></div><div class="sector-pct up">+2.31%</div></div>
+      <div class="sector-row"><div class="sector-label">Industrials <span class="cn">工业</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 20%;"></div></div><div class="sector-pct up">+1.62%</div></div>
+      <div class="sector-row"><div class="sector-label">Materials <span class="cn">原材料</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 18%;"></div></div><div class="sector-pct up">+1.48%</div></div>
+      <div class="sector-row"><div class="sector-label">Financials <span class="cn">金融</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 14%;"></div></div><div class="sector-pct up">+1.12%</div></div>
+      <div class="sector-row"><div class="sector-label">Healthcare <span class="cn">医疗保健</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 8%;"></div></div><div class="sector-pct up">+0.61%</div></div>
+      <div class="sector-row"><div class="sector-label">Real Estate <span class="cn">房地产</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill pos" style="width: 5%;"></div></div><div class="sector-pct up">+0.38%</div></div>
+      <div class="sector-row"><div class="sector-label">Consumer Staples <span class="cn">必需消费</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill neg" style="width: 4%;"></div></div><div class="sector-pct down">-0.34%</div></div>
+      <div class="sector-row"><div class="sector-label">Utilities <span class="cn">公用事业</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill neg" style="width: 9%;"></div></div><div class="sector-pct down">-0.78%</div></div>
+      <div class="sector-row"><div class="sector-label">Energy <span class="cn">能源</span></div><div class="bar-track"><div class="bar-center"></div><div class="bar-fill neg" style="width: 30%;"></div></div><div class="sector-pct down">-2.65%</div></div>
+    </div>
+  </section>
+
+  <!-- CROSS ASSET -->
+  <section class="section">
+    <div class="section-title">Cross-Asset Snapshot · 跨资产概览</div>
+    <div class="section-sub">Crypto · FX · Safe Havens</div>
+    <div class="cross-grid">
+      <div class="cross-card">
+        <div class="cross-label">Bitcoin · BTC</div>
+        <div class="cross-value">$66,075</div>
+        <div class="cross-change flat">approx.</div>
+        <div class="cross-note">加密谨慎跟随，未明显跟涨。</div>
+      </div>
+      <div class="cross-card">
+        <div class="cross-label">Ethereum · ETH</div>
+        <div class="cross-value">—</div>
+        <div class="cross-change flat">—</div>
+        <div class="cross-note">数据未获取；以太与 BTC 相关性维持高位。</div>
+      </div>
+      <div class="cross-card">
+        <div class="cross-label">DXY · 美元指数</div>
+        <div class="cross-value">99.50</div>
+        <div class="cross-change flat">小幅波动</div>
+        <div class="cross-note">和平协议利好欧元、压制避险买盘。</div>
+      </div>
+      <div class="cross-card">
+        <div class="cross-label">Gold · 黄金</div>
+        <div class="cross-value">$4,338.9</div>
+        <div class="cross-change up">+2.77%</div>
+        <div class="cross-note">实际收益率回落，黄金逆势走高。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEEP DIVE 2x2 -->
+  <section class="section">
+    <div class="section-title">Sector Deep Dive · 板块深度</div>
+    <div class="section-sub">Where the Money Moved Today</div>
+    <div class="deep-grid">
+      <div class="deep-card">
+        <div class="deep-title">Semis &amp; AI Capex · 半导体与 AI 资本开支</div>
+        <div class="deep-body">Chip names led the Nasdaq's 3.07% surge — Western Digital +16%, Seagate +9%, AXTI +14% — as the relief rally rotated risk back into high-beta growth. NVDA +2.0%, alongside MSFT/GOOGL gains, validates the AI capex narrative.
+          <span class="cn">存储与晶圆代工链领涨纳指，AI 资本开支主线在地缘风险缓解后再获买盘。</span></div>
+      </div>
+      <div class="deep-card">
+        <div class="deep-title">Travel &amp; Transport · 出行与运输</div>
+        <div class="deep-body">United +3.9%, American +3.2%, Delta higher; Carnival +3.2%, NCLH +3.7%. The -5% oil move directly bolsters airline and cruise unit economics into peak summer travel season.
+          <span class="cn">油价骤降直接利好航空与邮轮单位经济，旺季消费叙事提振。</span></div>
+      </div>
+      <div class="deep-card">
+        <div class="deep-title">Energy · 能源</div>
+        <div class="deep-body">XLE fell ~2.7%; integrated majors (XOM -2.4%, CVX -1.9%) and services (SLB -3.1%) gave back recent geopolitical premium. YTD energy still leads broad sectors at +25%.
+          <span class="cn">能源股回吐地缘溢价，年内累计涨幅仍领跑各板块。</span></div>
+      </div>
+      <div class="deep-card">
+        <div class="deep-title">Defensives · 防御板块</div>
+        <div class="deep-body">Staples (-0.3%) and Utilities (-0.8%) lagged as flows rotated out of low-beta. Gold/Treasuries served as the only safe-haven beneficiaries, with 10Y yield down ~7 bps to 4.43%.
+          <span class="cn">资金流出必需消费与公用事业，债市与黄金成为唯一的避险落点。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYST VIEWS -->
+  <section class="section">
+    <div class="section-title">Analyst &amp; Strategist Views · 机构观点</div>
+    <div class="section-sub">Selected Commentary</div>
+    <div class="analyst-grid">
+      <div class="analyst-card">
+        <div class="analyst-src">Bloomberg Consensus</div>
+        <div class="analyst-quote">"Average year-end S&amp;P 500 target is now 7,555, with Oppenheimer at 8,100 and Stifel at 7,000 — the tightest forecast cluster in nearly a decade."
+          <span class="cn">华尔街年终标普 500 目标均值 7,555，区间 7,000–8,100，分歧度为近十年最低。</span></div>
+      </div>
+      <div class="analyst-card">
+        <div class="analyst-src">CME FedWatch</div>
+        <div class="analyst-quote">"Implied probability of a June hike sits at just 0.6%; market now prices Warsh shifting from easing to neutral bias. Year-end odds for at least one hike: ~70%."
+          <span class="cn">6 月加息概率仅 0.6%，市场押注 Warsh 由宽松转中性；年内仍有约 70% 至少加息一次的概率。</span></div>
+      </div>
+      <div class="analyst-card">
+        <div class="analyst-src">Schwab Strategy</div>
+        <div class="analyst-quote">"Sentiment lifted on extended ceasefire hopes; rotation back into cyclicals and small caps consistent with broadening leadership rather than narrow mega-cap dominance."
+          <span class="cn">情绪受停火预期提振，周期与小盘回流，市场广度改善而非仅由大科技驱动。</span></div>
+      </div>
+      <div class="analyst-card">
+        <div class="analyst-src">Strategist Caution</div>
+        <div class="analyst-quote">"H1 2026 still vulnerable to a correction if yields re-spike — inflation above target, energy elevated, and the Fed shifting hawkish are all factors that could reset valuations."
+          <span class="cn">若收益率再度上行，2026 上半年仍存回调风险；通胀偏高、能源高位与联储转鹰是潜在催化剂。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAG 7 + FOCUS -->
+  <section class="section">
+    <div class="section-title">Mega Cap &amp; Focus · 主要个股</div>
+    <div class="section-sub">Magnificent Seven · Plus Today's Movers</div>
+    <div class="stock-grid">
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/AAPL/">AAPL</a></div><div class="stk-name">Apple</div><div class="stk-price">—</div><div class="stk-change up">+1.55%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/MSFT/">MSFT</a></div><div class="stk-name">Microsoft</div><div class="stk-price">—</div><div class="stk-change up">+2.03%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/NVDA/">NVDA</a></div><div class="stk-name">Nvidia</div><div class="stk-price">—</div><div class="stk-change up">+2.01%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/GOOGL/">GOOGL</a></div><div class="stk-name">Alphabet</div><div class="stk-price">—</div><div class="stk-change up">+3.02%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/AMZN/">AMZN</a></div><div class="stk-name">Amazon</div><div class="stk-price">—</div><div class="stk-change up">+3.21%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/META/">META</a></div><div class="stk-name">Meta Platforms</div><div class="stk-price">—</div><div class="stk-change up">+4.65%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/TSLA/">TSLA</a></div><div class="stk-name">Tesla</div><div class="stk-price">—</div><div class="stk-change up">+1.16%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/SPCX/">SPCX</a></div><div class="stk-name">SpaceX</div><div class="stk-price">$161</div><div class="stk-change up">extending IPO rally</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/AAL/">AAL</a></div><div class="stk-name">American Airlines</div><div class="stk-price">—</div><div class="stk-change up">+3.20%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/UAL/">UAL</a></div><div class="stk-name">United Airlines</div><div class="stk-price">—</div><div class="stk-change up">+3.90%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/WDC/">WDC</a></div><div class="stk-name">Western Digital</div><div class="stk-price">—</div><div class="stk-change up">+16.10%</div></div>
+      <div class="stock-card"><div class="stk-ticker"><a href="https://finance.yahoo.com/quote/XOM/">XOM</a></div><div class="stk-name">Exxon Mobil</div><div class="stk-price">—</div><div class="stk-change down">-2.40%</div></div>
+    </div>
+  </section>
+
+  <!-- CORE THEMES -->
+  <section class="section">
+    <div class="section-title">Core Themes · 核心主题</div>
+    <div class="section-sub">What Mattered Today</div>
+    <div class="themes-list">
+      <div class="theme-item"><div class="theme-num">01</div><div class="theme-body"><strong>U.S.–Iran 60-Day Framework.</strong> Halts hostilities, reopens Strait of Hormuz — the single biggest geopolitical de-risking event of 2026 so far.
+        <span class="cn">美伊达成 60 天协议、重开霍尔木兹海峡，为 2026 年迄今最重要的地缘缓释事件。</span></div></div>
+      <div class="theme-item"><div class="theme-num">02</div><div class="theme-body"><strong>Oil Repricing.</strong> WTI -4.9% to $80.75; Brent -4.95% to $83. Strait reopens expected end of week — implications for CPI nowcasts and airline/cruise margins.
+        <span class="cn">油价大跌：WTI 跌至 80.75 美元，布伦特跌至 83 美元；周内重开预期将下压通胀预期、改善航空邮轮利润率。</span></div></div>
+      <div class="theme-item"><div class="theme-num">03</div><div class="theme-body"><strong>FOMC Warsh Debut.</strong> June 16–17 meeting; consensus is hold at 3.50–3.75% with a shift from easing to neutral bias. SEP/dot plot in focus.
+        <span class="cn">FOMC 6/16–17 召开，Warsh 首秀；市场押注 3.50%–3.75% 不变并由宽松转中性，重点关注点阵图与 SEP。</span></div></div>
+      <div class="theme-item"><div class="theme-num">04</div><div class="theme-body"><strong>SpaceX Afterglow.</strong> SPCX ~$161, market cap above $2T intraday following Friday's $5.56B IPO — fresh fuel for the space/defense theme.
+        <span class="cn">SpaceX 上市后市值一度突破 2 万亿美元，太空/国防主题获新催化。</span></div></div>
+      <div class="theme-item"><div class="theme-num">05</div><div class="theme-body"><strong>Breadth Re-engages.</strong> Small caps +0.7%, cyclicals/industrials lift; advance-decline mildly positive (50.7% adv vs 46.7% dec) — leadership broadens beyond mega-tech.
+        <span class="cn">小盘与周期股回归，市场宽度改善，领涨不再局限于大科技。</span></div></div>
+      <div class="theme-item"><div class="theme-num">06</div><div class="theme-body"><strong>Juneteenth Closure Friday.</strong> Holiday-shortened week; bond and equity markets closed Friday Jun 19.
+        <span class="cn">本周为 Juneteenth 假日缩短周，6/19 周五美股美债休市。</span></div></div>
+    </div>
+  </section>
+
+  <!-- EARNINGS CALENDAR -->
+  <section class="section">
+    <div class="section-title">This Week's Earnings · 本周财报</div>
+    <div class="section-sub">Key Reports · Jun 15 – Jun 18, 2026</div>
+    <div class="cal-table">
+      <div class="cal-row header"><span>DATE</span><span>TICKER</span><span>COMPANY</span><span>EST. EPS</span></div>
+      <div class="cal-row"><span class="cal-date">Tue Jun 16 BMO</span><span class="cal-ticker"><a href="https://finance.yahoo.com/quote/LEN/">LEN</a></span><span class="cal-name">Lennar · 莱纳房屋</span><span class="cal-est">$1.31 adj. (reported)</span></div>
+      <div class="cal-row"><span class="cal-date">Wed Jun 17 AMC</span><span class="cal-ticker"><a href="https://finance.yahoo.com/quote/SCS/">SCS</a></span><span class="cal-name">Steelcase · 办公家具</span><span class="cal-est">—</span></div>
+      <div class="cal-row"><span class="cal-date">Thu Jun 18 BMO</span><span class="cal-ticker"><a href="https://finance.yahoo.com/quote/KR/">KR</a></span><span class="cal-name">Kroger · 食品零售</span><span class="cal-est">$1.59 · $45.49B rev</span></div>
+      <div class="cal-row"><span class="cal-date">Thu Jun 18 BMO</span><span class="cal-ticker"><a href="https://finance.yahoo.com/quote/DRI/">DRI</a></span><span class="cal-name">Darden Restaurants · 达登</span><span class="cal-est">—</span></div>
+      <div class="cal-row"><span class="cal-date">Thu Jun 18 BMO</span><span class="cal-ticker"><a href="https://finance.yahoo.com/quote/ACN/">ACN</a></span><span class="cal-name">Accenture · 埃森哲</span><span class="cal-est">—</span></div>
+    </div>
+  </section>
+
+  <!-- LENNAR RECAP -->
+  <section class="section">
+    <div class="section-title">Earnings Recap · 财报亮点</div>
+    <div class="section-sub">Lennar (LEN) Q2 2026</div>
+    <div class="deep-card">
+      <div class="deep-title">Lennar · 莱纳房屋</div>
+      <div class="deep-body">
+        Net earnings of $305M, EPS $1.24 ($1.31 adj.) vs. $1.81 prior year; revenue $7.94B (vs. Q1's $6.62B). Delivered 20,519 homes, 21,749 new orders. Incentive rate stepped down to 12.9% from 14.1% — "first real and potentially sustainable decline" per management. FY delivery guide trimmed to 82–83k units citing rate pressure. Stock dipped ~4.5% post-print.
+        <span class="cn">每股 1.24 美元，调整后 1.31 美元；收入 79.4 亿美元。交付 20,519 套，新订单 21,749 套。促销激励率从 14.1% 降至 12.9%（管理层称"首次有望持续回落"），全年交付指引下修至 8.2–8.3 万套。盘后股价下跌约 4.5%。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECONOMIC CALENDAR -->
+  <section class="section">
+    <div class="section-title">Economic Calendar · 经济日历</div>
+    <div class="section-sub">Macro Data &amp; Fed Events This Week</div>
+    <div class="cal-table">
+      <div class="cal-row header"><span>DATE</span><span>TIME ET</span><span>EVENT</span><span>NOTE</span></div>
+      <div class="cal-row"><span class="cal-date">Tue Jun 16</span><span class="cal-est">08:30</span><span class="cal-name">Retail Sales (May) · 零售销售</span><span class="cal-est">+0.4% MoM exp.</span></div>
+      <div class="cal-row"><span class="cal-date">Tue Jun 16</span><span class="cal-est">09:15</span><span class="cal-name">Industrial Production · 工业生产</span><span class="cal-est">Manufacturing +0.4% est.</span></div>
+      <div class="cal-row"><span class="cal-date">Wed Jun 17</span><span class="cal-est">14:00</span><span class="cal-name">FOMC Decision &amp; SEP · 联储利率与点阵图</span><span class="cal-est">Hold 3.50–3.75%</span></div>
+      <div class="cal-row"><span class="cal-date">Wed Jun 17</span><span class="cal-est">14:30</span><span class="cal-name">Chair Warsh Press Conference · Warsh 首秀</span><span class="cal-est">Tone &amp; dot plot focus</span></div>
+      <div class="cal-row"><span class="cal-date">Thu Jun 18</span><span class="cal-est">08:30</span><span class="cal-name">Initial Jobless Claims · 初请失业金</span><span class="cal-est">—</span></div>
+      <div class="cal-row"><span class="cal-date">Thu Jun 18</span><span class="cal-est">10:00</span><span class="cal-name">Leading Indicators · 领先指标</span><span class="cal-est">—</span></div>
+      <div class="cal-row"><span class="cal-date">Fri Jun 19</span><span class="cal-est">—</span><span class="cal-name">Juneteenth · 美股美债休市</span><span class="cal-est">CLOSED</span></div>
+    </div>
+  </section>
+
+  <!-- OTHER NOTABLE -->
+  <section class="section">
+    <div class="section-title">Other Notables · 其他值得关注</div>
+    <div class="themes-list">
+      <div class="theme-item"><div class="theme-num">·</div><div class="theme-body">Fox Corp shares dropped 16-17% on a sharp restructuring/news catalyst — biggest single-stock loser in the S&amp;P 500 today.
+        <span class="cn">福克斯集团 A/B 股双双暴跌 15–17%，成为标普 500 当日最大输家。</span></div></div>
+      <div class="theme-item"><div class="theme-num">·</div><div class="theme-body">Crypto failed to confirm the equity risk-on: BTC ~$66k, ETH lagging. Diverging signal worth monitoring into Fed week.
+        <span class="cn">加密未跟随股市风险偏好：BTC 约 6.6 万美元，ETH 滞后；联储周前需关注此分化。</span></div></div>
+      <div class="theme-item"><div class="theme-num">·</div><div class="theme-body">Gold's 2.77% rally even with a strong dollar suggests safe-haven demand persists — long-duration risk hedge remains in play.
+        <span class="cn">黄金在美元偏强下仍上涨 2.77%，避险需求未完全退潮。</span></div></div>
+      <div class="theme-item"><div class="theme-num">·</div><div class="theme-body">Quantum names (XNDU +18%, IONQ, RGTI in sympathy) extended their multi-week momentum on continued institutional flows.
+        <span class="cn">量子计算板块继续吸金，Xanadu Quantum 单日 +18%。</span></div></div>
+      <div class="theme-item"><div class="theme-num">·</div><div class="theme-body">Storage/HDD complex (WDC +16%, STX +9%) reacted to AI data-center capex commentary and pricing pass-through.
+        <span class="cn">硬盘存储链（WDC、STX）受 AI 数据中心资本开支与价格传导双重利好。</span></div></div>
+    </div>
+  </section>
+
+  <!-- BOTTOM LINE -->
+  <section class="section">
+    <div class="section-title">Bottom Line · 总结观点</div>
+    <div class="section-sub">Bull &amp; Bear · Watchlist for Tomorrow</div>
+    <div class="bottom-line">
+      <div class="bl-block bull">
+        <div class="label">▲ Bull Case · 看涨观点</div>
+        <strong>Geopolitical premium reset.</strong> Iran de-escalation cools oil, lowers CPI tail-risk, and revives risk-on rotation. Dow at record, breadth widening, AI capex theme intact, SpaceX IPO success signals robust deal pipeline. If Warsh holds and stays balanced Wednesday, momentum can extend into July.<br><br>
+        <span style="color: var(--text-tertiary);">地缘溢价快速重置，油价回落改善通胀尾部风险，风险偏好回流。道指创新高、市场广度扩张、AI 资本开支主线未改。若 Warsh 周三保持中性立场，涨势有望延续至 7 月。</span>
+      </div>
+      <div class="bl-block bear">
+        <div class="label">▼ Bear Case · 看跌观点</div>
+        <strong>One-day euphoria, two-month framework.</strong> A 60-day truce is not durable peace; oil shorts may unwind quickly. Fed could surprise hawkish — SEP shift to "neutral with hike option" + sticky core CPI = yields back to 4.6%+, multiples compress. Crypto/gold divergence flags lingering uncertainty.<br><br>
+        <span style="color: var(--text-tertiary);">单日狂欢难掩 60 天框架的脆弱；联储或鹰派意外（点阵图含加息选项 + 核心 CPI 黏性），收益率反弹至 4.6%+ 将压估值。加密与黄金分化暗示风险并未消除。</span>
+      </div>
+    </div>
+    <div style="margin-top: 24px; background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: 14px; padding: 24px 28px;">
+      <div style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px;">Next Session Watch · 下一交易日观察点</div>
+      <div style="font-size: 15px; line-height: 1.7;">
+        ① 8:30 ET 5 月零售销售（消费动能） · ② 9:15 工业生产 · ③ 油价能否守住 $80/桶 · ④ 10Y 收益率能否进一步回落至 4.40% 下方 · ⑤ Lennar 财报盘前反应是否拖累房建股 · ⑥ SPCX 第二日延续性测试 · ⑦ FOMC 决议前夕的债市与美元定价。
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>SOURCES · 数据来源：TheStreet, CNBC, Yahoo Finance, Fortune, Schwab, FXStreet, Kiplinger, CME FedWatch, Trading Economics, Al Jazeera, The Motley Fool, Bloomberg Consensus. 报价以当日新闻报道为准，部分次要数据用"—"占位。</div>
+    <div style="margin-top: 12px;">DISCLAIMER · 免责声明：本简报仅供研究参考，不构成投资建议。市场有风险，决策请审慎。</div>
+    <div style="margin-top: 12px;">GENERATED · 自动生成于 2026-06-15 · Market Pulse</div>
+  </footer>
+
+</div>
+</body>
+</html>
