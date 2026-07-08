@@ -3,17 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Market Pulse PRO · 专业分析 · Jul 6, 2026</title>
+<title>Market Pulse · 专业分析 · Jul 7 2026</title>
 <script>
 (function(){
   try {
-    var saved = localStorage.getItem('marketPulseTheme');
-    if (saved) { document.documentElement.setAttribute('data-theme', saved); }
-    else {
-      var m = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', m ? 'dark' : 'light');
-    }
-  } catch(e) {}
+    var stored = localStorage.getItem('marketPulseTheme');
+    if (stored) { document.documentElement.setAttribute('data-theme', stored); }
+  } catch(e){}
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,704 +17,708 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root, [data-theme="light"] {
-  --bg-deep:#f7f6f2; --bg-card:#ffffff; --bg-card-hover:#fafaf7; --bg-surface:#f2f0ea;
-  --border:rgba(0,0,0,0.08); --border-accent:rgba(0,0,0,0.14);
-  --text-primary:#1a1b1f; --text-secondary:#5a5d64; --text-tertiary:#8a8d92;
-  --green:#0aa06a; --green-dim:rgba(10,160,106,0.12);
-  --red:#d4323c; --red-dim:rgba(212,50,60,0.10);
-  --amber:#c8810d; --amber-dim:rgba(200,129,13,0.12);
-  --blue:#2a72cc; --blue-dim:rgba(42,114,204,0.10);
-  --purple:#7a4dca; --purple-dim:rgba(122,77,202,0.10);
-  --noise-opacity:0.02; --noise-blend:multiply; --orb-opacity:0.06;
-  --font-display:'Instrument Serif', serif;
-  --font-body:'Manrope', sans-serif;
-  --font-mono:'DM Mono', monospace;
-  --font-cn:'Noto Serif SC', serif;
+  --bg-deep: #f7f6f2; --bg-card: #ffffff; --bg-card-hover: #fafaf7; --bg-surface: #f2f0ea;
+  --border: rgba(0,0,0,0.08); --border-accent: rgba(0,0,0,0.14);
+  --text-primary: #1a1b1f; --text-secondary: #5a5d64; --text-tertiary: #8a8d92;
+  --green: #0aa06a; --green-dim: rgba(10,160,106,0.12);
+  --red: #d4323c; --red-dim: rgba(212,50,60,0.10);
+  --amber: #c8810d; --amber-dim: rgba(200,129,13,0.12);
+  --blue: #2a72cc; --blue-dim: rgba(42,114,204,0.10);
+  --purple: #6d4bcc; --purple-dim: rgba(109,75,204,0.10);
+  --noise-opacity: 0.02; --noise-blend: multiply; --orb-opacity: 0.06;
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-sc: 'Noto Serif SC', serif;
 }
 [data-theme="dark"] {
-  --bg-deep:#0e0f12; --bg-card:#16181d; --bg-card-hover:#1c1f25; --bg-surface:#21242b;
-  --border:rgba(255,255,255,0.08); --border-accent:rgba(255,255,255,0.16);
-  --text-primary:#f0f1f3; --text-secondary:#a8abb3; --text-tertiary:#6b6f78;
-  --green:#2ecc8b; --red:#ee5a64; --amber:#e3a23a; --blue:#5da4f2; --purple:#a87cef;
-  --green-dim:rgba(46,204,139,0.16); --red-dim:rgba(238,90,100,0.14);
-  --amber-dim:rgba(227,162,58,0.16); --blue-dim:rgba(93,164,242,0.14);
-  --purple-dim:rgba(168,124,239,0.14);
-  --noise-opacity:0.04; --noise-blend:screen; --orb-opacity:0.10;
+  --bg-deep: #0e0f12; --bg-card: #16181d; --bg-card-hover: #1c1f25; --bg-surface: #21242b;
+  --border: rgba(255,255,255,0.08); --border-accent: rgba(255,255,255,0.16);
+  --text-primary: #f0f1f3; --text-secondary: #a8abb3; --text-tertiary: #6b6f78;
+  --green: #2ecc8b; --red: #ee5a64; --amber: #e3a23a; --blue: #5da4f2; --purple: #a87cef;
+  --green-dim: rgba(46,204,139,0.16); --red-dim: rgba(238,90,100,0.14);
+  --amber-dim: rgba(227,162,58,0.16); --blue-dim: rgba(93,164,242,0.14);
+  --purple-dim: rgba(168,124,239,0.14);
+  --noise-opacity: 0.04; --noise-blend: screen; --orb-opacity: 0.10;
 }
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
-body {
-  background:var(--bg-deep); color:var(--text-primary);
-  font-family:var(--font-body); font-weight:400; line-height:1.7;
-  font-size:16px; overflow-x:hidden; position:relative; min-height:100vh;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-deep: #0e0f12; --bg-card: #16181d; --bg-card-hover: #1c1f25; --bg-surface: #21242b;
+    --border: rgba(255,255,255,0.08); --border-accent: rgba(255,255,255,0.16);
+    --text-primary: #f0f1f3; --text-secondary: #a8abb3; --text-tertiary: #6b6f78;
+    --green: #2ecc8b; --red: #ee5a64; --amber: #e3a23a; --blue: #5da4f2; --purple: #a87cef;
+    --green-dim: rgba(46,204,139,0.16); --red-dim: rgba(238,90,100,0.14);
+    --amber-dim: rgba(227,162,58,0.16); --blue-dim: rgba(93,164,242,0.14);
+    --purple-dim: rgba(168,124,239,0.14);
+    --noise-opacity: 0.04; --noise-blend: screen; --orb-opacity: 0.10;
+  }
 }
-body::before {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity:var(--noise-opacity); mix-blend-mode:var(--noise-blend);
-}
-body::after {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(42,114,204,0.5), transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(10,160,106,0.4), transparent 50%);
-  opacity:var(--orb-opacity); filter:blur(80px);
-}
-.container { max-width:1180px; margin:0 auto; padding:24px 40px 80px; position:relative; z-index:1; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg-deep); color: var(--text-primary); font-family: var(--font-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { position: relative; min-height: 100vh; overflow-x: hidden; }
+.bg-noise { position: fixed; inset: 0; z-index: 0; opacity: var(--noise-opacity); mix-blend-mode: var(--noise-blend); pointer-events: none; }
+.orb { position: fixed; border-radius: 50%; filter: blur(120px); opacity: var(--orb-opacity); z-index: 0; pointer-events: none; }
+.orb-1 { top: -20%; right: -10%; width: 600px; height: 600px; background: var(--purple); }
+.orb-2 { bottom: -20%; left: -10%; width: 700px; height: 700px; background: var(--blue); }
+.container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 40px 32px 80px; }
 
-.topnav {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:14px 18px; margin-bottom:28px;
-  background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
-  gap:14px; flex-wrap:wrap;
-}
-.brand { display:flex; flex-direction:column; }
-.brand-name { font-family:var(--font-mono); font-size:12px; letter-spacing:0.18em; color:var(--text-secondary); text-transform:uppercase; }
-.brand-sub { font-family:var(--font-cn); font-size:13px; color:var(--text-tertiary); margin-top:2px; }
-.tabs { display:flex; gap:8px; flex-wrap:wrap; }
-.tab {
-  font-family:var(--font-mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
-  padding:8px 14px; border-radius:999px; border:1px solid var(--border-accent);
-  background:var(--bg-card); color:var(--text-primary); text-decoration:none;
-}
-.tab.active { background:var(--text-primary); color:var(--bg-card); border-color:var(--text-primary); }
-.theme-toggle {
-  font-family:var(--font-mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
-  padding:8px 14px; border-radius:999px; border:1px solid var(--border-accent);
-  background:var(--bg-card); color:var(--text-primary); cursor:pointer;
-}
+.topnav { display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; border-bottom: 1px solid var(--border); background: var(--bg-card); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); flex-wrap: wrap; gap: 16px; }
+.topnav-brand { font-family: var(--font-display); font-size: 20px; color: var(--text-primary); }
+.topnav-tabs { display: flex; gap: 8px; align-items: center; }
+.tab { padding: 8px 16px; font-size: 12px; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); border: 1px solid var(--border); border-radius: 999px; text-decoration: none; background: var(--bg-surface); transition: all 0.15s; }
+.tab:hover { color: var(--text-primary); }
+.tab.active { color: var(--blue); background: var(--blue-dim); border-color: var(--blue-dim); }
+.pill { padding: 8px 14px; border: 1px solid var(--border-accent); border-radius: 999px; font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); background: var(--bg-card); cursor: pointer; text-decoration: none; }
+.pill:hover { color: var(--text-primary); }
 
-.hero { margin-bottom:40px; padding-bottom:32px; border-bottom:1px solid var(--border); }
-.hero-tag { font-family:var(--font-mono); font-size:11px; letter-spacing:0.2em; color:var(--purple); text-transform:uppercase; margin-bottom:14px; }
-.hero-title { font-family:var(--font-display); font-size:50px; font-weight:400; line-height:1.1; margin-bottom:14px; letter-spacing:-0.01em; }
-.hero-lead { font-family:var(--font-cn); font-size:17px; color:var(--text-secondary); line-height:1.75; margin-bottom:16px; }
-.hero-meta { font-family:var(--font-mono); font-size:12px; letter-spacing:0.14em; color:var(--text-tertiary); text-transform:uppercase; }
+.hero { padding: 60px 0 40px; margin-bottom: 40px; border-bottom: 1px solid var(--border); }
+.hero-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple); margin-bottom: 18px; padding: 4px 10px; border: 1px solid var(--purple-dim); background: var(--purple-dim); border-radius: 4px; display: inline-block; }
+.hero-title { font-family: var(--font-display); font-size: 50px; line-height: 1.1; color: var(--text-primary); margin-bottom: 14px; }
+.hero-summary { font-family: var(--font-sc); font-size: 18px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; max-width: 900px; font-weight: 500; }
+.hero-date { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; color: var(--text-tertiary); }
 
-.toc {
-  background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
-  padding:22px 26px; margin-bottom:48px;
-}
-.toc-title { font-family:var(--font-mono); font-size:12px; letter-spacing:0.16em; color:var(--text-tertiary); text-transform:uppercase; margin-bottom:14px; }
-.toc-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:6px 20px; }
-.toc-item {
-  display:flex; gap:12px; padding:6px 0; text-decoration:none; color:var(--text-primary);
-  font-size:14px; border-bottom:1px dashed transparent; transition:all 0.15s;
-}
-.toc-item:hover { border-bottom-color:var(--border-accent); }
-.toc-num { font-family:var(--font-mono); font-size:12px; color:var(--text-tertiary); width:32px; flex-shrink:0; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 26px 30px; margin-bottom: 60px; }
+.toc-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 16px; }
+.toc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 24px; }
+.toc-item { display: flex; align-items: baseline; gap: 12px; padding: 4px 0; font-size: 14px; }
+.toc-item a { color: var(--text-secondary); text-decoration: none; }
+.toc-item a:hover { color: var(--blue); }
+.toc-num { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); min-width: 24px; }
 
-.section { margin-bottom:56px; scroll-margin-top:20px; }
-.section h2 { font-family:var(--font-display); font-size:31px; font-weight:400; letter-spacing:-0.005em; margin-bottom:6px; display:flex; align-items:baseline; gap:14px; }
-.section h2 .n { font-family:var(--font-mono); font-size:14px; color:var(--text-tertiary); letter-spacing:0.14em; }
-.section h3 { font-family:var(--font-display); font-size:22px; font-weight:400; margin:22px 0 12px; }
-.section p { color:var(--text-secondary); font-size:15px; margin-bottom:12px; }
-.section p b, .section p strong { color:var(--text-primary); font-weight:600; }
-.section-sub { font-family:var(--font-mono); font-size:12px; letter-spacing:0.16em; color:var(--text-tertiary); text-transform:uppercase; margin-bottom:22px; }
-.section ul { list-style:none; padding:0; }
-.section ul li { padding:6px 0 6px 22px; position:relative; color:var(--text-secondary); font-size:15px; }
-.section ul li::before { content:'·'; position:absolute; left:6px; color:var(--blue); font-weight:700; font-size:18px; line-height:1; top:9px; }
+.sec { margin-bottom: 68px; scroll-margin-top: 80px; }
+.sec-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
+.sec-title { font-family: var(--font-display); font-size: 34px; color: var(--text-primary); margin-bottom: 6px; }
+.sec-sub { font-family: var(--font-sc); font-size: 14px; color: var(--text-secondary); margin-bottom: 28px; font-weight: 500; }
+.sec p { font-size: 16px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 14px; }
+.sec p strong { color: var(--text-primary); }
+.sec h3 { font-family: var(--font-body); font-size: 18px; font-weight: 600; color: var(--text-primary); margin: 24px 0 12px; }
 
-.card {
-  background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
-  padding:22px 26px; margin-bottom:18px;
-}
-.callout {
-  background:var(--bg-card); border-left:3px solid var(--amber); border-radius:8px;
-  padding:14px 18px; margin:14px 0;
-  font-size:14.5px; color:var(--text-secondary);
-}
-.callout b { color:var(--text-primary); }
+.summary-box { background: var(--bg-card); border-left: 4px solid var(--purple); padding: 24px 28px; border-radius: 4px 12px 12px 4px; margin-bottom: 20px; }
+.summary-box p { font-size: 16px; color: var(--text-primary); font-family: var(--font-sc); line-height: 1.8; margin: 0; }
+.summary-box p + p { margin-top: 12px; }
 
-.table-wrap { overflow-x:auto; margin:12px 0; }
-table {
-  width:100%; border-collapse:collapse; font-size:14px;
-  background:var(--bg-card); border:1px solid var(--border); border-radius:12px; overflow:hidden;
-}
-th, td { padding:11px 14px; text-align:left; border-bottom:1px solid var(--border); }
-th { font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-tertiary); background:var(--bg-surface); }
-tr:last-child td { border-bottom:none; }
-td.mono { font-family:var(--font-mono); }
-.up { color:var(--green); }
-.down { color:var(--red); }
-.flat { color:var(--text-tertiary); }
+.data-table { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+.data-table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 12px 16px; text-align: left; border-top: 1px solid var(--border); }
+th { background: var(--bg-surface); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); font-weight: 500; border-top: none; }
+td { color: var(--text-secondary); }
+td.tk { font-family: var(--font-mono); font-weight: 500; color: var(--text-primary); }
+td.tk a { color: var(--text-primary); text-decoration: none; }
+td.num { font-family: var(--font-mono); text-align: right; }
+td.up { color: var(--green); font-family: var(--font-mono); }
+td.down { color: var(--red); font-family: var(--font-mono); }
 
-.pill { display:inline-block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; padding:3px 8px; border-radius:999px; }
-.pill.green { background:var(--green-dim); color:var(--green); }
-.pill.red { background:var(--red-dim); color:var(--red); }
-.pill.amber { background:var(--amber-dim); color:var(--amber); }
-.pill.blue { background:var(--blue-dim); color:var(--blue); }
-.pill.purple { background:var(--purple-dim); color:var(--purple); }
+.bullet-list { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 22px 28px; margin-bottom: 20px; }
+.bullet-list ul { list-style: none; }
+.bullet-list li { font-size: 15px; color: var(--text-secondary); padding: 8px 0 8px 22px; position: relative; line-height: 1.65; }
+.bullet-list li::before { content: '›'; position: absolute; left: 4px; color: var(--purple); font-weight: 700; font-size: 16px; }
+.bullet-list li strong { color: var(--text-primary); }
 
-.risk-matrix table td:nth-child(2) { font-weight:600; }
+.subsec { margin: 20px 0 24px; }
+.subsec-title { font-family: var(--font-body); font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; padding-left: 12px; border-left: 3px solid var(--blue); }
 
-.footer {
-  margin-top:64px; padding-top:24px; border-top:1px solid var(--border);
-  font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em; color:var(--text-tertiary); text-transform:uppercase;
-}
-.footer p { margin-bottom:6px; }
+.timeline-narrow { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; }
+.tn-row { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 12px 0; border-top: 1px solid var(--border); }
+.tn-row:first-child { border-top: none; padding-top: 0; }
+.tn-time { font-family: var(--font-mono); font-size: 12px; color: var(--purple); letter-spacing: 0.08em; }
+.tn-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+.risk-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.risk-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+.risk-name { font-size: 14px; color: var(--text-primary); }
+.risk-level { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+.risk-low { background: var(--green-dim); color: var(--green); }
+.risk-med { background: var(--amber-dim); color: var(--amber); }
+.risk-high { background: var(--red-dim); color: var(--red); }
+
+.tag { display: inline-block; padding: 2px 10px; border-radius: 999px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; }
+.tag-strong { background: var(--green-dim); color: var(--green); }
+.tag-hold { background: var(--amber-dim); color: var(--amber); }
+.tag-risk { background: var(--red-dim); color: var(--red); }
+.tag-watch { background: var(--blue-dim); color: var(--blue); }
+
+.conclusion-card { background: linear-gradient(135deg, var(--purple-dim), var(--blue-dim)); border: 1px solid var(--border-accent); border-radius: 14px; padding: 32px 34px; }
+.conclusion-title { font-family: var(--font-display); font-size: 26px; color: var(--text-primary); margin-bottom: 16px; }
+.conclusion-card p { color: var(--text-primary); font-family: var(--font-sc); font-size: 15px; line-height: 1.8; }
+.conclusion-card p + p { margin-top: 14px; }
+.stage-tag { display: inline-block; padding: 6px 14px; background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: 999px; font-family: var(--font-mono); font-size: 12px; margin-right: 8px; margin-top: 10px; color: var(--text-primary); }
+
+.footer { text-align: center; padding-top: 40px; margin-top: 60px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-tertiary); line-height: 1.7; }
 
 @media (max-width: 980px) {
-  .toc-grid { grid-template-columns:1fr; }
+  .container { padding: 32px 20px 60px; }
+  .hero-title { font-size: 36px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .risk-matrix { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .container { padding:16px 14px 60px; }
-  .topnav { padding:10px 12px; }
-  .hero-title { font-size:28px; }
-  .hero-lead { font-size:15px; }
-  .section h2 { font-size:21px; }
-  .section h3 { font-size:18px; }
-  .table-wrap table { min-width:540px; }
+  .container { padding: 24px 14px 50px; }
+  .topnav { padding: 14px 16px; }
+  .topnav-brand { font-size: 16px; }
+  .hero-title { font-size: 26px; }
+  .hero-summary { font-size: 15px; }
+  .sec-title { font-size: 24px; }
+  .sec p { font-size: 15px; }
+  .data-table-scroll { overflow-x: auto; }
+  .data-table-scroll table { min-width: 540px; }
+  th, td { padding: 10px 12px; font-size: 13px; }
+  .tn-row { grid-template-columns: 100px 1fr; gap: 12px; }
+  .tn-time { font-size: 11px; }
+  .conclusion-card { padding: 22px 20px; }
+  .conclusion-title { font-size: 20px; }
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="topnav">
-    <div class="brand">
-      <div class="brand-name">Market Pulse · PRO Analysis</div>
-      <div class="brand-sub">专业分析</div>
-    </div>
-    <div class="tabs">
-      <a class="tab" href="./index.html">每日简报</a>
-      <a class="tab active" href="./analysis.html">专业分析</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">DARK · 夜间</button>
-  </div>
+<svg class="bg-noise" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
+<div class="topnav">
+  <div class="topnav-brand">Market Pulse</div>
+  <div class="topnav-tabs">
+    <a href="./index.html" class="tab">每日简报</a>
+    <a href="./analysis.html" class="tab active">专业分析</a>
+    <button class="pill" id="themeToggle">DARK · 夜间</button>
+  </div>
+</div>
+
+<div class="container">
   <div class="hero">
-    <div class="hero-tag">PROFESSIONAL ANALYST BRIEFING · 内部研究</div>
-    <h1 class="hero-title">Narrow Melt-Up: Dow Prints 53K But the Tape Says Rotation, Not Rally</h1>
-    <p class="hero-lead">Dow 首次收于 53,000 上方看似里程碑，本质仍是"少数股票拉动指数"的窄幅上涨。半导体（不含 NVDA）与 Tesla 反弹是主要推手，能源全线走弱，涨跌家数比与 A/D 未跟进。ISM Services 温和高于预期，Prices 分项跌破 70 是温和利多；FOMC 纪要（周三）与下周 CPI/大行财报将决定行情能否从"少数股票"扩散到"多数股票"。</p>
-    <div class="hero-meta">Monday · July 6, 2026 · Post-Independence Day Session · Data as of NYSE close 4:00 PM ET</div>
+    <div class="hero-tag">PROFESSIONAL ANALYST BRIEFING</div>
+    <h1 class="hero-title">AI 拥挤度首次实质性去杠杆，防御 + 通胀敏感板块回补</h1>
+    <p class="hero-summary">7 月 7 日美股在三星财报"利润 19 倍增长仍不及预期"、DeepSeek 自研推理芯片报道、霍尔木兹 LNG 船遭袭三重叠加下出现结构性分化：费半 −5.5% 触及四周低点，SOX 距 200 日均线仅剩 6% 空间；能源、医疗、公用事业防御板块领涨；市场关注周三 FOMC 6 月会议纪要是否强化年内加息路径。</p>
+    <p class="hero-date">Tuesday · July 7, 2026 · 收盘后 · 4:30 PM ET</p>
   </div>
 
   <div class="toc">
-    <div class="toc-title">Table of Contents · 目录</div>
+    <div class="toc-title">Contents · 目录</div>
     <div class="toc-grid">
-      <a class="toc-item" href="#s00"><span class="toc-num">00</span>今日一句话总结</a>
-      <a class="toc-item" href="#s01"><span class="toc-num">01</span>大盘表现总览</a>
-      <a class="toc-item" href="#s02"><span class="toc-num">02</span>盘中走势复盘</a>
-      <a class="toc-item" href="#s03"><span class="toc-num">03</span>宏观环境</a>
-      <a class="toc-item" href="#s04"><span class="toc-num">04</span>板块表现</a>
-      <a class="toc-item" href="#s05"><span class="toc-num">05</span>主题与风格</a>
-      <a class="toc-item" href="#s06"><span class="toc-num">06</span>市场宽度</a>
-      <a class="toc-item" href="#s07"><span class="toc-num">07</span>技术面</a>
-      <a class="toc-item" href="#s08"><span class="toc-num">08</span>个股新闻与异动</a>
-      <a class="toc-item" href="#s09"><span class="toc-num">09</span>财报日历与解读</a>
-      <a class="toc-item" href="#s10"><span class="toc-num">10</span>机构观点与资金流</a>
-      <a class="toc-item" href="#s11"><span class="toc-num">11</span>板块轮动判断</a>
-      <a class="toc-item" href="#s12"><span class="toc-num">12</span>我的重点关注股观察</a>
-      <a class="toc-item" href="#s13"><span class="toc-num">13</span>明日交易计划</a>
-      <a class="toc-item" href="#s14"><span class="toc-num">14</span>风险提示</a>
-      <a class="toc-item" href="#s15"><span class="toc-num">15</span>最终结论</a>
+      <div class="toc-item"><span class="toc-num">00</span><a href="#s00">今日一句话总结</a></div>
+      <div class="toc-item"><span class="toc-num">01</span><a href="#s01">大盘表现总览</a></div>
+      <div class="toc-item"><span class="toc-num">02</span><a href="#s02">盘中走势复盘</a></div>
+      <div class="toc-item"><span class="toc-num">03</span><a href="#s03">宏观环境</a></div>
+      <div class="toc-item"><span class="toc-num">04</span><a href="#s04">板块表现</a></div>
+      <div class="toc-item"><span class="toc-num">05</span><a href="#s05">主题与风格</a></div>
+      <div class="toc-item"><span class="toc-num">06</span><a href="#s06">市场宽度</a></div>
+      <div class="toc-item"><span class="toc-num">07</span><a href="#s07">技术面</a></div>
+      <div class="toc-item"><span class="toc-num">08</span><a href="#s08">个股新闻与异动</a></div>
+      <div class="toc-item"><span class="toc-num">09</span><a href="#s09">财报日历与解读</a></div>
+      <div class="toc-item"><span class="toc-num">10</span><a href="#s10">机构观点与资金流</a></div>
+      <div class="toc-item"><span class="toc-num">11</span><a href="#s11">板块轮动判断</a></div>
+      <div class="toc-item"><span class="toc-num">12</span><a href="#s12">重点关注股观察</a></div>
+      <div class="toc-item"><span class="toc-num">13</span><a href="#s13">明日交易计划</a></div>
+      <div class="toc-item"><span class="toc-num">14</span><a href="#s14">风险提示</a></div>
+      <div class="toc-item"><span class="toc-num">15</span><a href="#s15">最终结论</a></div>
     </div>
   </div>
 
-  <div class="section" id="s00">
-    <h2><span class="n">00</span>今日一句话总结</h2>
-    <div class="section-sub">Executive Summary</div>
-    <div class="card">
-      <p>1. <b>方向</b>：三大指数集体收涨，Dow 首破 53K（+0.29%），Nasdaq +1.12% 领涨，SPX +0.72%。</p>
-      <p>2. <b>驱动</b>：半导体（不含 NVDA）+ Tesla 反弹主导；OPEC+ 增产 + Aramco 下调 OSP 拖累能源。</p>
-      <p>3. <b>风险偏好</b>：Risk-on，但宽度分化——Dow 涨跌家数勉强 17:13，SPX 涨跌家数 ~1.4:1，远逊于指数涨幅暗示。</p>
-      <p>4. <b>宽度</b>：涨跌线未同步创新高，equal-weight SPX 跑输 cap-weight 约 45 bps，QQQ 跑赢 RSP。</p>
-      <p>5. <b>主线</b>：AI 硬件叙事继续"去 NVDA 化"（AMD/MU/AVGO/WDC 强势），能源承压，大行遭下调，Tesla meme 反弹修复。</p>
+  <div class="sec" id="s00">
+    <div class="sec-num">Section 00</div>
+    <h2 class="sec-title">今日一句话总结</h2>
+    <div class="sec-sub">Executive Summary</div>
+    <div class="summary-box">
+      <p>今日美股呈现清晰的"风险偏好收缩 + 板块内部大分化"：S&P 500 −0.45%、Nasdaq −1.16%，但 Dow 仅 −0.20%，能源、医疗、公用事业均涨 2% 以上。核心驱动是<strong>芯片单一因子的估值回撤</strong>，而非宏观级恐慌 —— VIX 仅 +2.7% 至 15.97，10Y 收益率略降 2bps 至 4.48%。</p>
+      <p>三星 Q2 营业利润同比 19 倍但不及买方"HBM3E 高预期"，叠加路透 DeepSeek 自研推理芯片消息，AI 硬件叙事首次进入实质性 <strong>de-rating 阶段</strong>。费半 SOX −5.5% 至四周低点，Applied Materials −10%、Intel/Lam/KLA/WDC 均 −8% 级别。</p>
+      <p>与此同时霍尔木兹 LNG 船遭袭 + 美国撤销伊朗石油销售许可，Brent +3.0% 至 $74.16。<strong>宽度转向"能源/防御/价值"</strong>：这是本季度第一次真实的 risk-off 型轮动，为 7/8 FOMC 会议纪要与 7/9 PepsiCo 财报打开重定价空间。</p>
     </div>
   </div>
 
-  <div class="section" id="s01">
-    <h2><span class="n">01</span>大盘表现总览</h2>
-    <div class="section-sub">Index Snapshot</div>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>指数</th><th>收盘</th><th>涨跌</th><th>涨跌幅</th><th>52W 位置</th><th>YTD</th></tr></thead>
+  <div class="sec" id="s01">
+    <div class="sec-num">Section 01</div>
+    <h2 class="sec-title">大盘表现总览</h2>
+    <div class="sec-sub">Broad Market Recap · 主要指数收盘</div>
+    <div class="data-table"><div class="data-table-scroll"><table>
+      <thead><tr><th>Index</th><th>Close</th><th>Chg</th><th>%Chg</th><th>YTD</th></tr></thead>
       <tbody>
-        <tr><td>Dow Jones (DJI)</td><td class="mono">53,055.91</td><td class="mono up">+155.84</td><td class="mono up">+0.29%</td><td>ATH · 记录新高</td><td class="up">+16.4%</td></tr>
-        <tr><td>S&amp;P 500 (SPX)</td><td class="mono">7,537.43</td><td class="mono up">+54.02</td><td class="mono up">+0.72%</td><td>99%</td><td class="up">+10.6%</td></tr>
-        <tr><td>Nasdaq Comp (IXIC)</td><td class="mono">26,121.16</td><td class="mono up">+289.44</td><td class="mono up">+1.12%</td><td>99%</td><td class="up">+16.9%</td></tr>
-        <tr><td>Nasdaq 100 (NDX)</td><td class="mono">23,462.15</td><td class="mono up">+287.11</td><td class="mono up">+1.24%</td><td>99%</td><td class="up">+15.3%</td></tr>
-        <tr><td>Russell 2000 (IWM)</td><td class="mono">3,009.54</td><td class="mono up">+13.49</td><td class="mono up">+0.45%</td><td>96%</td><td class="up">+22.1%</td></tr>
-        <tr><td>Philadelphia Semi (SOX)</td><td class="mono">6,842.44</td><td class="mono up">+144.05</td><td class="mono up">+2.15%</td><td>ATH</td><td class="up">+27.3%</td></tr>
-        <tr><td>VIX</td><td class="mono">16.79</td><td class="mono up">+0.98</td><td class="mono up">+6.20%</td><td>25%</td><td class="down">-8.5%</td></tr>
+        <tr><td class="tk">Dow Jones</td><td class="num">52,925.15</td><td class="down">−105.83</td><td class="down">−0.20%</td><td class="up">+8.6%</td></tr>
+        <tr><td class="tk">S&P 500</td><td class="num">7,503.85</td><td class="down">−33.58</td><td class="down">−0.45%</td><td class="up">+11.4%</td></tr>
+        <tr><td class="tk">Nasdaq Composite</td><td class="num">25,818.69</td><td class="down">−302.47</td><td class="down">−1.16%</td><td class="up">+14.8%</td></tr>
+        <tr><td class="tk">Nasdaq 100</td><td class="num">24,120.44</td><td class="down">−328.85</td><td class="down">−1.35%</td><td class="up">+15.3%</td></tr>
+        <tr><td class="tk">Russell 2000</td><td class="num">2,981.24</td><td class="down">−37.44</td><td class="down">−1.24%</td><td class="up">+4.2%</td></tr>
+        <tr><td class="tk">PHLX Semi (SOX)</td><td class="num">12,383.53</td><td class="down">−720.73</td><td class="down">−5.50%</td><td class="up">+18.7%</td></tr>
+        <tr><td class="tk">CBOE VIX</td><td class="num">15.97</td><td class="up">+0.42</td><td class="up">+2.70%</td><td class="down">−4.1%</td></tr>
       </tbody>
-    </table>
-    </div>
-    <p><b>关键观察</b>：</p>
-    <ul>
-      <li>Dow 年内第 5 次跨越 1,000 点里程碑（去年全年仅 3 次），指向指数动能强劲，但 Dow 30 只成分股口径下的宽度更容易被少数科技/工业股放大。</li>
-      <li>NDX 跑赢 SPX 52 bps，QQQ 与 RSP 差 45 bps，与"大盘股/科技风格主导"的判断一致。</li>
-      <li>SOX 再创历史新高，但 NVDA 只微涨 +0.38%——领涨主力已从 NVDA 分散到 AMD / MU / AVGO / WDC / TER。</li>
-      <li>VIX 上涨 +6.2% 尽管指数上涨，反映期权市场对本周 FOMC 纪要与下周 CPI 的对冲需求上升。</li>
-    </ul>
+    </table></div></div>
+    <h3>关键观察</h3>
+    <div class="bullet-list"><ul>
+      <li><strong>三大指数背离：</strong>Nasdaq 显著弱于 Dow，反映本次抛售由 <strong>科技单一因子驱动</strong>，而非系统性 risk-off。</li>
+      <li><strong>SOX 单日 −5.5% 是本轮 AI 行情最大单日回撤</strong>，指数距 200 DMA 仅剩 6% 空间。</li>
+      <li><strong>VIX 未破 16</strong>，市场对冲需求温和，隐含波动率曲线并未陡峭化。</li>
+      <li><strong>Russell 2000 −1.24%</strong>，小盘同步承压但幅度小于 Nasdaq，暗示"轮动而非普跌"。</li>
+    </ul></div>
   </div>
 
-  <div class="section" id="s02">
-    <h2><span class="n">02</span>盘中走势复盘</h2>
-    <div class="section-sub">Intraday Playback</div>
-    <div class="card">
-      <p><b>盘前 (04:00-09:30)</b>：TSLA 盘前跌近 7%，受 Musk 周末宣布组建"America Party"影响；OPEC+ 决定 8 月增产 188 千桶/日 + Aramco 下调 Arab Light OSP，油价开盘走弱，能源股承压。SPX 期货盘前小幅上涨 +0.2%。</p>
-      <p><b>开盘 (09:30-10:00)</b>：SPX 高开 +0.35%，Nasdaq 领涨 +0.6%。SMH 开盘涨 2.7%，WDC 跳空 +6%，TER +2.8%，凸显"AI 硬件（非 NVDA）"路径。</p>
-      <p><b>上午 (10:00-12:00)</b>：<b>10:00 ET 公布 6 月 ISM Services PMI 54.0（预期 53.5、前值 54.5）</b>，就业分项 51.2 转正、Prices 67.7 四个月低点——被市场解读为"经济不衰退 + 通胀压力缓解"，10Y 收益率下行 1-2 bps。TSLA 盘中触及 $389 低点。</p>
-      <p><b>午盘 (12:00-14:00)</b>：Bloomberg 报道 Musk 相关 meme 交易员在 $393 附近吸筹，TSLA 快速拉升过 $400。SPX 站上 7,530，Nasdaq 逼近 26,100。</p>
-      <p><b>尾盘 (14:00-16:00)</b>：Dow 尾盘窄幅上冲，收报 53,055.91 首次收于 53K 上方；Nasdaq 收在日内高点附近，TSLA 收 $419.77 涨 6.62%。</p>
-      <p><b>盘后 (16:00-)</b>：Oppenheimer 下调 GS/MS 至 Underperform 消息发酵，两只大行盘后小幅下跌；关注周三 FOMC 纪要。</p>
-    </div>
-  </div>
-
-  <div class="section" id="s03">
-    <h2><span class="n">03</span>宏观环境</h2>
-    <div class="section-sub">Macro Environment</div>
-
-    <h3>3.1 美债收益率曲线</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>期限</th><th>收盘 (%)</th><th>bp 变动</th><th>1W 前</th><th>1M 前</th></tr></thead>
-      <tbody>
-        <tr><td>2Y UST</td><td class="mono">3.79</td><td class="mono down">-2</td><td class="mono">3.85</td><td class="mono">3.92</td></tr>
-        <tr><td>10Y UST</td><td class="mono">4.35</td><td class="mono down">-1</td><td class="mono">4.44</td><td class="mono">4.51</td></tr>
-        <tr><td>30Y UST</td><td class="mono">4.87</td><td class="mono up">+1</td><td class="mono">4.92</td><td class="mono">4.98</td></tr>
-        <tr><td>2s10s Spread</td><td class="mono">+56</td><td class="mono up">+1</td><td class="mono">+59</td><td class="mono">+59</td></tr>
-        <tr><td>10s30s Spread</td><td class="mono">+52</td><td class="mono up">+2</td><td class="mono">+48</td><td class="mono">+47</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p>2s10s 保持正斜率 +56 bp，收益率曲线在过去一年逐渐 bull-steepen（短端下、长端稳），符合"降息预期升温 + 财政供给压力"的双叙事。10Y 位于关键的 4.30-4.50 区间下沿，若跌破 4.30 将利好久期资产（长债 / 公用 / REIT / 大盘成长）。</p>
-
-    <h3>3.2 Fed 降息预期 · FedWatch</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>会议</th><th>不变</th><th>-25 bp</th><th>-50 bp</th><th>年内累计降息（bp）</th></tr></thead>
-      <tbody>
-        <tr><td>Jul 29, 2026</td><td class="mono">75.6%</td><td class="mono">22.9%</td><td class="mono">1.5%</td><td class="mono">—</td></tr>
-        <tr><td>Sep 16, 2026</td><td class="mono">32.4%</td><td class="mono">54.3%</td><td class="mono">13.3%</td><td class="mono">−25 中枢</td></tr>
-        <tr><td>Dec 9, 2026</td><td class="mono">11.6%</td><td class="mono">38.7%</td><td class="mono">39.5%</td><td class="mono">−50/−75 中枢</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p>Warsh 主席上任首会（6 月）纪要将于 <b>周三 7/8 2:00 PM ET</b> 公布，市场关注其对财政（tariff Section 122 上诉进展）与关税措辞。若纪要偏鹰，年内 -50 bp 的定价可能回撤到 -25 bp。</p>
-
-    <h3>3.3 美元 · 黄金 · 原油 · 比特币</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>资产</th><th>收盘</th><th>日涨跌</th><th>解读</th></tr></thead>
-      <tbody>
-        <tr><td>DXY 美元指数</td><td class="mono">101.06</td><td class="mono up">+0.21%</td><td>假日后小幅走强，但仍在 100-102 震荡区间</td></tr>
-        <tr><td>Gold 黄金</td><td class="mono">$3,342/oz</td><td class="mono up">+0.03%</td><td>盘整，10Y 微降不足以打破区间</td></tr>
-        <tr><td>WTI 原油</td><td class="mono">$67.79</td><td class="mono down">-1.77%</td><td>OPEC+ 增产 + Aramco 下调 OSP，跌破 $68</td></tr>
-        <tr><td>Brent 布伦特</td><td class="mono">$69.58</td><td class="mono down">-1.02%</td><td>低 US$70 区间，Strait 通行恢复</td></tr>
-        <tr><td>Bitcoin</td><td class="mono">$63,645</td><td class="mono up">+1.72%</td><td>上周疲弱就业数据后 risk-on 反弹</td></tr>
-        <tr><td>Ethereum</td><td class="mono">$1,773</td><td class="mono up">+0.55%</td><td>跟随 BTC，但相对疲弱</td></tr>
-      </tbody>
-    </table>
-    </div>
-
-    <h3>3.4 当日经济数据</h3>
-    <div class="callout">
-      <b>ISM Services PMI 6 月 = 54.0</b>（预期 53.5，前值 54.5）· Business Activity 55.4（前 57.7）· New Orders 55.1（前 57.3）· <b>Employment 51.2 转正</b>（前 47.9，4 个月来首次扩张）· <b>Prices 67.7</b>（前 71.3，2 月以来首次跌破 70）· Order Backlog 49.9 · Supplier Deliveries 52.6。指向"温和扩张 + 通胀压力略缓"，Fed 有耐心继续观望。
+  <div class="sec" id="s02">
+    <div class="sec-num">Section 02</div>
+    <h2 class="sec-title">盘中走势复盘</h2>
+    <div class="sec-sub">Intraday Playback · 从盘前到盘后</div>
+    <div class="timeline-narrow">
+      <div class="tn-row"><div class="tn-time">Pre-open</div><div class="tn-desc"><strong>08:00 三星 Q2 财报：</strong>营业利润 12.13 万亿韩元，同比 +1,890%，但低于韩交所卖方一致预期 +5%；Nasdaq 期指下滑 0.6%，SK Hynix ADR 盘前 −4%。</div></div>
+      <div class="tn-row"><div class="tn-time">Open · 09:30</div><div class="tn-desc">S&P 500 低开 −0.3%，Nasdaq −0.9%；半导体板块领跌，Intel −6%、AMD −5.5%、AMAT −7%；能源板块跟随隔夜油价 +1% 走强。</div></div>
+      <div class="tn-row"><div class="tn-time">Late morning</div><div class="tn-desc"><strong>11:07 路透独家：</strong>DeepSeek 已默默开发自研推理芯片，加入 OpenAI/Anthropic/Google/Amazon 自研阵营；Nvidia 盘中一度 −1.8%，费半跌幅扩大至 −4.5%。</div></div>
+      <div class="tn-row"><div class="tn-time">Midday · 12:00</div><div class="tn-desc">Nvidia 官方声明否认"AI 需求放缓"报道；股价从 $195 反弹至 $197.5，市场结构短线企稳，但设备与内存板块继续走弱。</div></div>
+      <div class="tn-row"><div class="tn-time">Early PM · 13:00</div><div class="tn-desc"><strong>霍尔木兹海峡外 LNG 运输船遭投射物袭击</strong>；美国总统署名令撤销所有伊朗石油销售授权。Brent 突破 $74，能源板块盘中 +2.5%。</div></div>
+      <div class="tn-row"><div class="tn-time">Late PM · 14:30</div><div class="tn-desc">NVDA 短线翻红重上 $198，避免拉动更大盘面卖压；防御板块（XLV/XLU/XLP）加速上涨，医疗领涨 +2.6%。</div></div>
+      <div class="tn-row"><div class="tn-time">Close · 16:00</div><div class="tn-desc">尾盘无明显买盘或抛售加速。S&P 收 7,503.85 −0.45%、Nasdaq 25,818.69 −1.16%、Dow 52,925.15 −0.20%。费半 SOX 收 12,383 −5.5%。</div></div>
+      <div class="tn-row"><div class="tn-time">After-hours</div><div class="tn-desc">Q2 财报前哨 AZZ 报盘后，市场焦点转向明日 (7/8) FOMC 6 月会议纪要与后日 (7/9) PepsiCo 财报。</div></div>
     </div>
   </div>
 
-  <div class="section" id="s04">
-    <h2><span class="n">04</span>板块表现</h2>
-    <div class="section-sub">11 GICS Sectors</div>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>板块</th><th>ETF</th><th>今日</th><th>近 5 日</th><th>近 1 月</th><th>vs SPX (1M)</th><th>驱动</th></tr></thead>
-      <tbody>
-        <tr><td>Info Tech</td><td class="mono">XLK</td><td class="mono up">+1.62%</td><td class="mono up">+3.21%</td><td class="mono up">+5.44%</td><td class="mono up">+2.9%</td><td>半导体广泛上涨（不含 NVDA）</td></tr>
-        <tr><td>Comm Services</td><td class="mono">XLC</td><td class="mono up">+1.21%</td><td class="mono up">+2.55%</td><td class="mono up">+4.11%</td><td class="mono up">+1.5%</td><td>GOOGL/META 带动</td></tr>
-        <tr><td>Consumer Discret</td><td class="mono">XLY</td><td class="mono up">+1.01%</td><td class="mono up">+1.88%</td><td class="mono up">+3.44%</td><td class="mono up">+0.9%</td><td>TSLA 反弹为主</td></tr>
-        <tr><td>Industrials</td><td class="mono">XLI</td><td class="mono up">+0.58%</td><td class="mono up">+1.42%</td><td class="mono up">+2.66%</td><td class="mono up">+0.1%</td><td>防务 ITA 创新高</td></tr>
-        <tr><td>Financials</td><td class="mono">XLF</td><td class="mono up">+0.42%</td><td class="mono up">+0.51%</td><td class="mono up">+1.85%</td><td class="mono down">-0.7%</td><td>大行遭 Oppy 下调压制</td></tr>
-        <tr><td>Health Care</td><td class="mono">XLV</td><td class="mono up">+0.22%</td><td class="mono flat">+0.14%</td><td class="mono down">-0.55%</td><td class="mono down">-3.1%</td><td>持续跑输</td></tr>
-        <tr><td>Materials</td><td class="mono">XLB</td><td class="mono up">+0.14%</td><td class="mono up">+0.62%</td><td class="mono up">+1.11%</td><td class="mono down">-1.4%</td><td>基础材料温和</td></tr>
-        <tr><td>Consumer Staples</td><td class="mono">XLP</td><td class="mono down">-0.15%</td><td class="mono down">-0.44%</td><td class="mono down">-1.28%</td><td class="mono down">-3.8%</td><td>PEP 财报前观望</td></tr>
-        <tr><td>Utilities</td><td class="mono">XLU</td><td class="mono down">-0.24%</td><td class="mono down">-0.66%</td><td class="mono up">+0.31%</td><td class="mono down">-2.2%</td><td>Schwab 已警示估值高</td></tr>
-        <tr><td>Real Estate</td><td class="mono">XLRE</td><td class="mono down">-0.38%</td><td class="mono down">-0.85%</td><td class="mono down">-1.72%</td><td class="mono down">-4.2%</td><td>10Y 反弹阶段拖累</td></tr>
-        <tr><td>Energy</td><td class="mono">XLE</td><td class="mono down">-1.42%</td><td class="mono down">-3.11%</td><td class="mono down">-5.66%</td><td class="mono down">-8.1%</td><td>OPEC+ 增产 + 需求担忧</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p><b>结构判断</b>：Cyclical growth（Tech/Comm/Discretionary）+ 部分 Cyclical value（Industrials）领跑；Defensive（Staples/Utilities）与 Rate-sensitive（Real Estate）跑输；Energy 独立走弱。属于典型"温和 risk-on + 利率略降"的板块表现，但 Financials 未跟上是一个警示信号。</p>
-  </div>
+  <div class="sec" id="s03">
+    <div class="sec-num">Section 03</div>
+    <h2 class="sec-title">宏观环境</h2>
+    <div class="sec-sub">Macro Backdrop · 利率、货币政策、跨资产</div>
 
-  <div class="section" id="s05">
-    <h2><span class="n">05</span>主题与风格</h2>
-    <div class="section-sub">Themes &amp; Style Factors</div>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>ETF</th><th>主题</th><th>今日</th><th>近 5 日</th><th>YTD</th><th>判断</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">SMH</td><td>半导体</td><td class="mono up">+2.71%</td><td class="mono up">+4.85%</td><td class="mono up">+34.2%</td><td><span class="pill green">主升浪继续</span></td></tr>
-        <tr><td class="mono">IGV</td><td>软件</td><td class="mono up">+0.94%</td><td class="mono up">+1.66%</td><td class="mono up">+12.4%</td><td><span class="pill amber">追赶中</span></td></tr>
-        <tr><td class="mono">BOTZ</td><td>AI &amp; 机器人</td><td class="mono up">+1.42%</td><td class="mono up">+2.88%</td><td class="mono up">+18.9%</td><td><span class="pill green">强势</span></td></tr>
-        <tr><td class="mono">FTNT/AIQ</td><td>AI 主题</td><td class="mono up">+1.35%</td><td class="mono up">+3.11%</td><td class="mono up">+22.1%</td><td><span class="pill green">强势</span></td></tr>
-        <tr><td class="mono">SNSR</td><td>光通信/传感</td><td class="mono up">+2.05%</td><td class="mono up">+3.66%</td><td class="mono up">+41.2%</td><td><span class="pill green">加速</span></td></tr>
-        <tr><td class="mono">GRID</td><td>数据中心/电力</td><td class="mono up">+0.78%</td><td class="mono up">+1.55%</td><td class="mono up">+24.4%</td><td><span class="pill amber">高位震荡</span></td></tr>
-        <tr><td class="mono">NLR</td><td>核电</td><td class="mono flat">+0.11%</td><td class="mono down">-0.85%</td><td class="mono up">+32.6%</td><td><span class="pill amber">短线钝化</span></td></tr>
-        <tr><td class="mono">LIT</td><td>储能/锂电</td><td class="mono up">+1.88%</td><td class="mono up">+2.44%</td><td class="mono up">+9.5%</td><td><span class="pill blue">补涨</span></td></tr>
-        <tr><td class="mono">IWO</td><td>小盘成长</td><td class="mono up">+0.62%</td><td class="mono up">+0.94%</td><td class="mono up">+16.8%</td><td><span class="pill blue">跟随</span></td></tr>
-        <tr><td class="mono">IWN</td><td>小盘价值</td><td class="mono up">+0.24%</td><td class="mono flat">+0.11%</td><td class="mono up">+11.2%</td><td><span class="pill amber">相对偏弱</span></td></tr>
-        <tr><td class="mono">RSP</td><td>等权 SPX</td><td class="mono up">+0.28%</td><td class="mono up">+0.55%</td><td class="mono up">+7.1%</td><td><span class="pill red">明显跑输 QQQ</span></td></tr>
-        <tr><td class="mono">QQQ</td><td>大盘成长</td><td class="mono up">+1.24%</td><td class="mono up">+2.88%</td><td class="mono up">+15.3%</td><td><span class="pill green">领涨</span></td></tr>
-        <tr><td class="mono">VTV</td><td>大盘价值</td><td class="mono up">+0.18%</td><td class="mono down">-0.22%</td><td class="mono up">+6.4%</td><td><span class="pill red">明显跑输</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p><b>风格判断</b>：Growth &gt; Value（QQQ vs VTV 差 100+ bps）；Large-cap &gt; Small-cap 但差距不大；AI &amp; 硬件叙事仍是主线，光通信/数据中心继续强势，核电和 REIT 短线钝化。</p>
-  </div>
-
-  <div class="section" id="s06">
-    <h2><span class="n">06</span>市场宽度</h2>
-    <div class="section-sub">Market Breadth</div>
-
-    <h3>6.1 均线参与度</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>SPX 成分股</th><th>今日</th><th>1W 前</th><th>1M 前</th></tr></thead>
-      <tbody>
-        <tr><td>&gt; 20 DMA</td><td class="mono">64%</td><td class="mono">58%</td><td class="mono">72%</td></tr>
-        <tr><td>&gt; 50 DMA</td><td class="mono">68%</td><td class="mono">66%</td><td class="mono">74%</td></tr>
-        <tr><td>&gt; 100 DMA</td><td class="mono">71%</td><td class="mono">72%</td><td class="mono">70%</td></tr>
-        <tr><td>&gt; 200 DMA</td><td class="mono">78%</td><td class="mono">76%</td><td class="mono">77%</td></tr>
-      </tbody>
-    </table>
+    <div class="subsec">
+      <div class="subsec-title">3.1 美债收益率与曲线</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Tenor</th><th>Yield</th><th>Chg (bps)</th><th>1M Chg</th><th>YTD Chg</th></tr></thead>
+        <tbody>
+          <tr><td class="tk">2Y</td><td class="num">3.94%</td><td class="down">−1</td><td class="up">+8</td><td class="up">+22</td></tr>
+          <tr><td class="tk">10Y</td><td class="num">4.48%</td><td class="down">−2</td><td class="up">+12</td><td class="up">+38</td></tr>
+          <tr><td class="tk">30Y</td><td class="num">4.82%</td><td class="down">−1</td><td class="up">+14</td><td class="up">+42</td></tr>
+          <tr><td class="tk">10Y-2Y 利差</td><td class="num">+54 bps</td><td class="down">−1</td><td class="up">+4</td><td class="up">+16</td></tr>
+        </tbody>
+      </table></div></div>
+      <p>曲线在避险买盘下略微牛平（bull flatten），10Y 维持 4.48% 关键位下方；期限利差重回 +54 bps，正常化路径继续。</p>
     </div>
 
-    <h3>6.2 涨跌家数与新高新低</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>指标</th><th>今日</th><th>1W 前</th></tr></thead>
-      <tbody>
-        <tr><td>NYSE Advancers vs Decliners</td><td class="mono">1,845 / 1,268</td><td class="mono">1,412 / 1,691</td></tr>
-        <tr><td>SPX Advancers vs Decliners</td><td class="mono">296 / 206</td><td class="mono">248 / 253</td></tr>
-        <tr><td>52W New Highs (NYSE)</td><td class="mono">104</td><td class="mono">86</td></tr>
-        <tr><td>52W New Lows (NYSE)</td><td class="mono">18</td><td class="mono">24</td></tr>
-      </tbody>
-    </table>
+    <div class="subsec">
+      <div class="subsec-title">3.2 Fed 降息预期（CME FedWatch）</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Meeting</th><th>Hold</th><th>+25bp Hike</th><th>−25bp Cut</th><th>Implied Rate</th></tr></thead>
+        <tbody>
+          <tr><td class="tk">Jul 30</td><td class="num">76%</td><td class="num">18%</td><td class="num">6%</td><td class="num">3.55%</td></tr>
+          <tr><td class="tk">Sep 17</td><td class="num">58%</td><td class="num">32%</td><td class="num">10%</td><td class="num">3.63%</td></tr>
+          <tr><td class="tk">Nov 5</td><td class="num">44%</td><td class="num">42%</td><td class="num">14%</td><td class="num">3.72%</td></tr>
+          <tr><td class="tk">Dec 17</td><td class="num">38%</td><td class="num">48%</td><td class="num">14%</td><td class="num">3.78%</td></tr>
+        </tbody>
+      </table></div></div>
+      <p>Warsh 主席领导的 Fed 保持 3.50–3.75% 不变，6 月点阵图显示 9/19 位官员预计年底前至少一次加息，8 位预计不变，1 位预计降息。<strong>市场已放弃 2026 年降息定价，转向"是否加息"的辩论</strong>。7/8 FOMC 会议纪要将是最重要的一手信息。</p>
     </div>
 
-    <h3>6.3 情绪与波动</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>指标</th><th>数值</th><th>解读</th></tr></thead>
-      <tbody>
-        <tr><td>NYSE A/D Line</td><td class="mono">Rising, but lagging price</td><td>宽度未同步创新高，警惕</td></tr>
-        <tr><td>McClellan Oscillator</td><td class="mono">+31</td><td>温和 bullish，未超买</td></tr>
-        <tr><td>Equity Put/Call Ratio</td><td class="mono">0.72</td><td>中性，无极端</td></tr>
-        <tr><td>VIX Term Structure</td><td class="mono">Contango, 3M/1M ~1.12</td><td>正常，无近端恐慌</td></tr>
-        <tr><td>MOVE Index (Bond Vol)</td><td class="mono">86.2</td><td>年内低位，债市平静</td></tr>
-        <tr><td>HY Spread (OAS)</td><td class="mono">278 bps</td><td>年内低位附近，无信用紧张</td></tr>
-        <tr><td>CNN Fear &amp; Greed</td><td class="mono">62 · Greed</td><td>贪婪但未极端</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <div class="callout"><b>结论</b>：宽度指标未同步创新高（NYSE A/D Line lagging），Put/Call 与 McClellan 中性，MOVE 低位表明债市平静——反映"少数股票拉动指数 + 无系统性风险"的组合，健康度尚可但需要宽度扩散确认。</div>
-  </div>
-
-  <div class="section" id="s07">
-    <h2><span class="n">07</span>技术面</h2>
-    <div class="section-sub">Technical Setup</div>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>ETF</th><th>收盘</th><th>vs 20DMA</th><th>vs 50DMA</th><th>RSI(14)</th><th>趋势</th><th>支撑 / 压力</th><th>信号</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">SPY</td><td class="mono">752.32</td><td class="mono up">+1.4%</td><td class="mono up">+3.8%</td><td class="mono">64</td><td>上升</td><td class="mono">742 / 760</td><td><span class="pill green">趋势多头</span></td></tr>
-        <tr><td class="mono">QQQ</td><td class="mono">571.85</td><td class="mono up">+2.1%</td><td class="mono up">+5.2%</td><td class="mono">68</td><td>上升</td><td class="mono">555 / 580</td><td><span class="pill green">强势</span></td></tr>
-        <tr><td class="mono">IWM</td><td class="mono">298.44</td><td class="mono up">+0.5%</td><td class="mono up">+2.4%</td><td class="mono">58</td><td>震荡向上</td><td class="mono">290 / 305</td><td><span class="pill amber">跟随</span></td></tr>
-        <tr><td class="mono">SMH</td><td class="mono">312.66</td><td class="mono up">+3.6%</td><td class="mono up">+7.9%</td><td class="mono">72</td><td>强势上升</td><td class="mono">298 / 320</td><td><span class="pill green">超买边缘</span></td></tr>
-        <tr><td class="mono">IGV</td><td class="mono">108.51</td><td class="mono up">+1.6%</td><td class="mono up">+2.8%</td><td class="mono">61</td><td>上升</td><td class="mono">104 / 112</td><td><span class="pill green">走强</span></td></tr>
-        <tr><td class="mono">XLK</td><td class="mono">278.44</td><td class="mono up">+1.9%</td><td class="mono up">+4.6%</td><td class="mono">66</td><td>上升</td><td class="mono">268 / 285</td><td><span class="pill green">趋势多头</span></td></tr>
-        <tr><td class="mono">XLC</td><td class="mono">116.22</td><td class="mono up">+1.5%</td><td class="mono up">+3.1%</td><td class="mono">63</td><td>上升</td><td class="mono">112 / 120</td><td><span class="pill green">走强</span></td></tr>
-        <tr><td class="mono">XLY</td><td class="mono">241.85</td><td class="mono up">+1.1%</td><td class="mono up">+2.6%</td><td class="mono">57</td><td>震荡向上</td><td class="mono">234 / 248</td><td><span class="pill amber">TSLA 主导</span></td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p><b>信号</b>：SMH RSI 72 接近超买，其他主要 ETF RSI 均在 55-68 健康区间。IWM 相对滞涨，压力位 305 是短期关键。整体维持"多头趋势 + 部分超买"的组合。</p>
-  </div>
-
-  <div class="section" id="s08">
-    <h2><span class="n">08</span>个股新闻与异动</h2>
-    <div class="section-sub">Single-Stock Highlights</div>
-
-    <h3>8.1 Mag 7</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>Ticker</th><th>收盘</th><th>涨跌</th><th>要点</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">AAPL</td><td class="mono">$228.65</td><td class="mono up">+1.36%</td><td>iPhone 17 供应链传闻，AI 迭代节奏关注</td></tr>
-        <tr><td class="mono">MSFT</td><td class="mono">$497.31</td><td class="mono down">-0.94%</td><td>唯一收跌 Mag 7，Azure 增速预期温和拖累</td></tr>
-        <tr><td class="mono">GOOGL</td><td class="mono">$183.42</td><td class="mono up">+2.44%</td><td>TPU 定制芯片路线图 + Cloud AI 订单</td></tr>
-        <tr><td class="mono">AMZN</td><td class="mono">$226.11</td><td class="mono up">+0.61%</td><td>Prime Day 前夕，AWS AI 收入观察</td></tr>
-        <tr><td class="mono">META</td><td class="mono">$729.84</td><td class="mono up">+3.12%</td><td>自研 ASIC 进展 + Llama 4.5 迭代</td></tr>
-        <tr><td class="mono">NVDA</td><td class="mono">$159.68</td><td class="mono up">+0.38%</td><td>相对跑输，YTD +3.2%，定制 ASIC 侵蚀 GPU 叙事</td></tr>
-        <tr><td class="mono">TSLA</td><td class="mono">$419.77</td><td class="mono up">+6.62%</td><td>Q2 交付 480,126 辆超预期 18%，抵消 America Party 负面</td></tr>
-      </tbody>
-    </table>
+    <div class="subsec">
+      <div class="subsec-title">3.3 跨资产快照</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Asset</th><th>Close</th><th>Chg</th><th>%Chg</th><th>解读</th></tr></thead>
+        <tbody>
+          <tr><td class="tk">DXY (US Dollar)</td><td class="num">101.32</td><td class="up">+0.18</td><td class="up">+0.18%</td><td>油价推升通胀预期，美元微涨</td></tr>
+          <tr><td class="tk">Gold Spot</td><td class="num">$4,154.46</td><td class="down">−10.4</td><td class="down">−0.25%</td><td>高位盘整，等待 FOMC</td></tr>
+          <tr><td class="tk">WTI Crude</td><td class="num">$70.44</td><td class="up">+1.92</td><td class="up">+2.80%</td><td>霍尔木兹地缘溢价</td></tr>
+          <tr><td class="tk">Brent Crude</td><td class="num">$74.16</td><td class="up">+2.16</td><td class="up">+3.00%</td><td>撤销伊朗销售许可</td></tr>
+          <tr><td class="tk">Bitcoin</td><td class="num">$63,240</td><td class="down">−910</td><td class="down">−1.42%</td><td>风险偏好收缩</td></tr>
+          <tr><td class="tk">Ethereum</td><td class="num">$3,048</td><td class="down">−57</td><td class="down">−1.85%</td><td>跟随 BTC</td></tr>
+        </tbody>
+      </table></div></div>
     </div>
 
-    <h3>8.2 AI 硬件 · 半导体</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>Ticker</th><th>收盘</th><th>涨跌</th><th>要点</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">AVGO</td><td class="mono">$278.94</td><td class="mono up">+2.17%</td><td>定制 ASIC 三大客户拓展预期</td></tr>
-        <tr><td class="mono">AMD</td><td class="mono">$249.63</td><td class="mono up">+2.51%</td><td>MI400 路线图 + xAI/OpenAI 订单</td></tr>
-        <tr><td class="mono">MU</td><td class="mono">$212.44</td><td class="mono up">+3.85%</td><td>HBM3E 供不应求，YTD +305%</td></tr>
-        <tr><td class="mono">WDC</td><td class="mono">$78.35</td><td class="mono up">+7.00%</td><td>企业级 SSD 需求上修</td></tr>
-        <tr><td class="mono">TER</td><td class="mono">$154.22</td><td class="mono up">+2.80%</td><td>HBM 测试设备订单</td></tr>
-        <tr><td class="mono">INTC</td><td class="mono">$85.71</td><td class="mono up">+1.62%</td><td>Lip-Bu Tan 转型深化，代工订单积累</td></tr>
-        <tr><td class="mono">SMCI</td><td class="mono">$56.32</td><td class="mono up">+2.05%</td><td>AI 服务器 Q4 交付节奏观察</td></tr>
-        <tr><td class="mono">TSM</td><td class="mono">$268.44</td><td class="mono up">+1.86%</td><td>7 月月报预热</td></tr>
-      </tbody>
-    </table>
-    </div>
-
-    <h3>8.3 软件 · SaaS · AI 应用</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>Ticker</th><th>涨跌</th><th>要点</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">CRM</td><td class="mono up">+1.42%</td><td>Agentforce 3.0 用户数披露预期</td></tr>
-        <tr><td class="mono">NOW</td><td class="mono up">+1.85%</td><td>企业 AI Workflow 订单增长</td></tr>
-        <tr><td class="mono">PLTR</td><td class="mono up">+3.11%</td><td>联邦客户扩张持续</td></tr>
-        <tr><td class="mono">SNOW</td><td class="mono up">+1.22%</td><td>AI 数据平台竞争加剧</td></tr>
-        <tr><td class="mono">ADBE</td><td class="mono up">+0.55%</td><td>相对温和</td></tr>
-        <tr><td class="mono">DDOG</td><td class="mono up">+2.35%</td><td>AI 可观测性需求</td></tr>
-      </tbody>
-    </table>
-    </div>
-
-    <h3>8.4 AI 电力 · 数据中心</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>Ticker</th><th>涨跌</th><th>要点</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">VST</td><td class="mono up">+0.85%</td><td>核电 + 天然气电力，AI 数据中心签约持续</td></tr>
-        <tr><td class="mono">CEG</td><td class="mono flat">-0.05%</td><td>核电独立发电商，短线钝化</td></tr>
-        <tr><td class="mono">GEV</td><td class="mono up">+1.24%</td><td>燃气轮机订单持续</td></tr>
-        <tr><td class="mono">ETN</td><td class="mono up">+0.66%</td><td>电力管理 + 数据中心冷却</td></tr>
-        <tr><td class="mono">TLN</td><td class="mono down">-1.11%</td><td>核电 EV 短线获利了结</td></tr>
-      </tbody>
-    </table>
-    </div>
-
-    <h3>8.5 其他显著</h3>
-    <ul>
-      <li><b>Chevron / Exxon / OXY / COP / DVN</b> 全线走弱 -0.85% ~ -1.72%，OPEC+ 供应 + Aramco 下调 OSP 是主因。</li>
-      <li><b>Goldman Sachs (GS) / Morgan Stanley (MS)</b> 均下跌超 1%，Oppenheimer 下调至 Underperform。</li>
-      <li><b>ITA 防务 ETF</b> 创盘中新高，Lockheed / RTX / GD 分别 +0.9% / +1.1% / +0.7%。</li>
-      <li><b>Netflix (NFLX)</b> +0.85%，7/15 财报前布局。</li>
-    </ul>
-  </div>
-
-  <div class="section" id="s09">
-    <h2><span class="n">09</span>财报日历与解读</h2>
-    <div class="section-sub">Earnings Calendar</div>
-
-    <h3>9.1 今日/近日已公布关键公司</h3>
-    <p>今日无 SPX 主要公司发布财报（假日短周窗口）。上周关键：Constellation Brands（STZ）Q1 miss（消费疲弱信号）、Micron（MU）Q3 beat + 上调 Q4 指引（HBM 逻辑验证）。</p>
-
-    <h3>9.2 未来 1-3 日重要财报</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>Date</th><th>Ticker</th><th>Cons. EPS</th><th>Cons. Rev</th><th>关注点</th></tr></thead>
-      <tbody>
-        <tr><td>Thu 7/9 BMO</td><td class="mono">PEP</td><td class="mono">$2.20</td><td class="mono">$22.7B</td><td>饮料量增速、Frito-Lay 成本、国际市场</td></tr>
-        <tr><td>Thu 7/9 AMC</td><td class="mono">CAG</td><td class="mono">$0.58</td><td class="mono">$2.9B</td><td>包装食品定价与销量</td></tr>
-        <tr><td>Fri 7/10 BMO</td><td class="mono">DAL</td><td class="mono">$1.48</td><td class="mono">$18.78B</td><td>Q3 指引、企业出行、premium cabin 份额</td></tr>
-        <tr><td>Mon 7/13 AMC</td><td class="mono">FAST</td><td class="mono">$0.29</td><td class="mono">$2.1B</td><td>工业需求先行指标</td></tr>
-        <tr><td>Tue 7/14 BMO</td><td class="mono">JPM · C · WFC · GS</td><td class="mono">—</td><td class="mono">—</td><td>NII、IB 收入、贷款损失准备金</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p><b>解读</b>：本周财报清淡，市场焦点在 FOMC 纪要与 CPI；下周 7/14 大行拉开 Q2 财报季，是宽度是否扩散的关键信号。</p>
-  </div>
-
-  <div class="section" id="s10">
-    <h2><span class="n">10</span>机构观点与资金流</h2>
-    <div class="section-sub">Institutional Views &amp; Fund Flows</div>
-
-    <h3>10.1 大行策略</h3>
-    <ul>
-      <li><b>Oppenheimer</b>：下调 GS、MS 至 Underperform（估值不吸引）；下调 BAC、C 至 Perform。</li>
-      <li><b>Goldman Sachs</b>：上调 Tradeweb (TW) 至 Buy，目标价 $146。</li>
-      <li><b>Daiwa</b>：上调 Honeywell (HON) 至 Outperform，目标价 $255。</li>
-      <li><b>JPMorgan</b>：上调 Qualys (QLYS) 至 Neutral，目标价 $139。</li>
-      <li><b>Morgan Stanley 策略</b>：维持 SPX 12 月目标 7,800（暗示 +3.5% 上行空间）。</li>
-    </ul>
-
-    <h3>10.2 ETF 资金流（今日估计）</h3>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>ETF</th><th>净流入 / 流出</th><th>解读</th></tr></thead>
-      <tbody>
-        <tr><td class="mono">SPY</td><td class="mono up">+$1.42B</td><td>宽基被动增持</td></tr>
-        <tr><td class="mono">QQQ</td><td class="mono up">+$685M</td><td>科技延续吸金</td></tr>
-        <tr><td class="mono">SMH</td><td class="mono up">+$312M</td><td>半导体主题加仓</td></tr>
-        <tr><td class="mono">XLE</td><td class="mono down">-$268M</td><td>能源赎回</td></tr>
-        <tr><td class="mono">GLD</td><td class="mono up">+$88M</td><td>温和避险配置</td></tr>
-        <tr><td class="mono">IBIT (BTC)</td><td class="mono up">+$122M</td><td>假期后 risk-on 回流</td></tr>
-      </tbody>
-    </table>
-    </div>
-
-    <h3>10.3 期权异动</h3>
-    <ul>
-      <li><b>TSLA</b>：$430/$440 看涨 call 未平仓量大幅增加，反映 meme + 短期看多。</li>
-      <li><b>NVDA</b>：$160 平值 put 未平仓量上升，反映"NVDA 相对疲弱"的对冲需求。</li>
-      <li><b>SPY</b>：8 月 750 protective put 交易量放大 1.4×，波动率买盘存在。</li>
-    </ul>
-  </div>
-
-  <div class="section" id="s11">
-    <h2><span class="n">11</span>板块轮动判断</h2>
-    <div class="section-sub">Sector Rotation Read</div>
-    <div class="card">
-      <p><b>当前阶段判定</b>：<span class="pill green">AI 硬件主升浪</span> + <span class="pill amber">大盘窄幅上涨</span> + <span class="pill blue">部分板块高位钝化</span>。不是 risk-off，但也不是全面扩散——处于"半导体主线 + 局部补涨（工业防务、软件）+ 能源与利率敏感股承压"的组合。</p>
-      <p><b>资金流向</b>：从 Energy / Staples / Utilities / REIT 流出 → 流入 Tech / Semis / Comm / AI 主题。小盘（IWM）与等权 SPX（RSP）跑输大盘成长（QQQ）表明"资金向大盘 + 成长集中"未改，但差距在收窄。</p>
-      <p><b>是否高切低</b>：暂无明显信号——Utilities/REIT 跑输，但也没有明显"低位价值"补涨迹象；Financials 因大行遭下调而略滞涨，是短期需要观察的信号。</p>
+    <div class="subsec">
+      <div class="subsec-title">3.4 当日经济数据</div>
+      <div class="bullet-list"><ul>
+        <li><strong>Consumer Credit (May)：</strong>+$11.3B（前值 +$14.2B、预期 +$12.8B）— 消费者信贷放缓，与 5 月零售数据一致。</li>
+        <li><strong>3Y Treasury Auction：</strong>发行 $58B，Bid-Cover 2.64（前 2.58），Indirect 63%，需求稳健。</li>
+        <li><strong>API 原油库存：</strong>−7.1M 桶（预期 −1.8M），加剧地缘溢价推升。</li>
+      </ul></div>
     </div>
   </div>
 
-  <div class="section" id="s12">
-    <h2><span class="n">12</span>我的重点关注股观察</h2>
-    <div class="section-sub">Watchlist</div>
-    <div class="table-wrap">
-    <table>
-      <thead><tr><th>Ticker</th><th>类别</th><th>今日</th><th>标签</th><th>观察点</th></tr></thead>
+  <div class="sec" id="s04">
+    <div class="sec-num">Section 04</div>
+    <h2 class="sec-title">板块表现</h2>
+    <div class="sec-sub">Sector Performance · 11 GICS + 关键 ETF</div>
+    <div class="data-table"><div class="data-table-scroll"><table>
+      <thead><tr><th>Sector · ETF</th><th>1D</th><th>5D</th><th>1M</th><th>vs SPX (1D)</th><th>主要驱动</th></tr></thead>
       <tbody>
-        <tr><td class="mono">NVDA</td><td>核心科技</td><td class="mono up">+0.38%</td><td><span class="pill amber">短线过热钝化</span></td><td>相对 SOX 弱，等 GB300 更新催化</td></tr>
-        <tr><td class="mono">AMD</td><td>AI 硬件</td><td class="mono up">+2.51%</td><td><span class="pill green">继续强势</span></td><td>$250 心理位置，突破待观察</td></tr>
-        <tr><td class="mono">MU</td><td>存储</td><td class="mono up">+3.85%</td><td><span class="pill green">继续强势</span></td><td>HBM3E 供不应求，Q4 指引</td></tr>
-        <tr><td class="mono">AVGO</td><td>定制 ASIC</td><td class="mono up">+2.17%</td><td><span class="pill green">趋势多头</span></td><td>下财报（8 月）前布局</td></tr>
-        <tr><td class="mono">CRM</td><td>软件</td><td class="mono up">+1.42%</td><td><span class="pill blue">低位修复</span></td><td>Agentforce 3.0 用户数是催化</td></tr>
-        <tr><td class="mono">NOW</td><td>软件</td><td class="mono up">+1.85%</td><td><span class="pill green">强势</span></td><td>企业 AI Workflow 需求</td></tr>
-        <tr><td class="mono">PLTR</td><td>AI 软件</td><td class="mono up">+3.11%</td><td><span class="pill green">继续强势</span></td><td>联邦订单持续，估值高</td></tr>
-        <tr><td class="mono">VST</td><td>AI 电力</td><td class="mono up">+0.85%</td><td><span class="pill amber">高位震荡</span></td><td>数据中心签约进度</td></tr>
-        <tr><td class="mono">CEG</td><td>核电</td><td class="mono flat">-0.05%</td><td><span class="pill amber">高位震荡</span></td><td>核电重启 PPA 谈判</td></tr>
-        <tr><td class="mono">TSLA</td><td>大盘成长</td><td class="mono up">+6.62%</td><td><span class="pill blue">利好兑现</span></td><td>Q2 交付 beat + America Party 政治不确定</td></tr>
-        <tr><td class="mono">GOOGL</td><td>大盘成长</td><td class="mono up">+2.44%</td><td><span class="pill green">继续强势</span></td><td>TPU + Cloud AI 订单</td></tr>
-        <tr><td class="mono">META</td><td>大盘成长</td><td class="mono up">+3.12%</td><td><span class="pill green">继续强势</span></td><td>自研 ASIC + Llama 4.5</td></tr>
+        <tr><td class="tk">Energy · XLE</td><td class="up">+2.85%</td><td class="up">+3.42%</td><td class="up">+4.85%</td><td class="up">+330 bps</td><td>Brent +3%，霍尔木兹地缘</td></tr>
+        <tr><td class="tk">Health Care · XLV</td><td class="up">+2.60%</td><td class="up">+3.10%</td><td class="up">+2.85%</td><td class="up">+305 bps</td><td>避险 + GLP-1 龙头强势</td></tr>
+        <tr><td class="tk">Utilities · XLU</td><td class="up">+2.20%</td><td class="up">+2.75%</td><td class="up">+3.60%</td><td class="up">+265 bps</td><td>10Y 略降 + AI 电力</td></tr>
+        <tr><td class="tk">Cons Staples · XLP</td><td class="up">+2.00%</td><td class="up">+2.40%</td><td class="up">+1.90%</td><td class="up">+245 bps</td><td>防御回补，PEP 财报预热</td></tr>
+        <tr><td class="tk">Materials · XLB</td><td class="up">+1.90%</td><td class="up">+2.10%</td><td class="up">+2.55%</td><td class="up">+235 bps</td><td>油价推升化工，铜金属稳</td></tr>
+        <tr><td class="tk">Financials · XLF</td><td class="up">+1.50%</td><td class="up">+1.85%</td><td class="up">+2.20%</td><td class="up">+195 bps</td><td>期限利差 + 财报预期</td></tr>
+        <tr><td class="tk">Real Estate · XLRE</td><td class="up">+1.10%</td><td class="up">+1.42%</td><td class="up">+1.80%</td><td class="up">+155 bps</td><td>利率避险</td></tr>
+        <tr><td class="tk">Industrials · XLI</td><td class="up">+0.55%</td><td class="up">+0.85%</td><td class="up">+1.65%</td><td class="up">+100 bps</td><td>国防 + 铁路</td></tr>
+        <tr><td class="tk">Cons Disc · XLY</td><td class="down">−0.35%</td><td class="down">−0.42%</td><td class="up">+1.20%</td><td class="up">+10 bps</td><td>TSLA/AMZN 拖累</td></tr>
+        <tr><td class="tk">Comm Svcs · XLC</td><td class="down">−1.05%</td><td class="down">−0.85%</td><td class="up">+0.55%</td><td class="down">−60 bps</td><td>GOOGL/META 走弱</td></tr>
+        <tr><td class="tk">Info Tech · XLK</td><td class="down">−2.70%</td><td class="down">−1.95%</td><td class="down">−0.85%</td><td class="down">−225 bps</td><td>半导体重挫</td></tr>
       </tbody>
-    </table>
+    </table></div></div>
+    <div class="bullet-list"><ul>
+      <li><strong>板块极端分化：</strong>XLE +2.85% 与 XLK −2.70% 相差 555 bps，为 2026 年最大板块分化日。</li>
+      <li><strong>7-3 结构：</strong>8 个板块上涨、3 个下跌（XLY/XLC/XLK），板块宽度看似健康但市值权重集中的 XLK 拖累指数。</li>
+      <li><strong>防御四大将齐涨：</strong>XLV/XLU/XLP/XLE 是典型 late-cycle 或 stagflation 组合。</li>
+    </ul></div>
+  </div>
+
+  <div class="sec" id="s05">
+    <div class="sec-num">Section 05</div>
+    <h2 class="sec-title">主题与风格</h2>
+    <div class="sec-sub">Themes & Styles · Subsector performance</div>
+    <div class="data-table"><div class="data-table-scroll"><table>
+      <thead><tr><th>Theme · ETF/Proxy</th><th>1D</th><th>1M</th><th>判断</th></tr></thead>
+      <tbody>
+        <tr><td class="tk">半导体 · SMH</td><td class="down">−5.30%</td><td class="down">−1.20%</td><td>拥挤度去杠杆首日</td></tr>
+        <tr><td class="tk">软件 · IGV</td><td class="down">−1.85%</td><td class="up">+2.30%</td><td>软件相对硬件占优</td></tr>
+        <tr><td class="tk">AI 综合 · BOTZ</td><td class="down">−3.10%</td><td class="down">−0.45%</td><td>拥挤宽度收窄</td></tr>
+        <tr><td class="tk">光通信 · —</td><td class="down">−2.85%</td><td class="up">+3.10%</td><td>ANET/COHR/CIEN 调整</td></tr>
+        <tr><td class="tk">数据中心 · DTCR</td><td class="up">+0.65%</td><td class="up">+2.85%</td><td>结构性需求，逻辑不变</td></tr>
+        <tr><td class="tk">核电 · NLR</td><td class="up">+2.10%</td><td class="up">+4.20%</td><td>Alphabet 加码 Proxima 引爆</td></tr>
+        <tr><td class="tk">储能/电池 · LIT</td><td class="up">+3.05%</td><td class="up">+5.15%</td><td>EOSE +6.7% 领涨</td></tr>
+        <tr><td class="tk">小盘成长 · IWO</td><td class="down">−1.35%</td><td class="up">+2.20%</td><td>拥挤板块回撤</td></tr>
+        <tr><td class="tk">小盘价值 · IWN</td><td class="down">−1.15%</td><td class="up">+3.85%</td><td>相对占优</td></tr>
+        <tr><td class="tk">等权 S&P · RSP</td><td class="up">+0.35%</td><td class="up">+1.90%</td><td>低于 SPX，宽度真实转好</td></tr>
+        <tr><td class="tk">Nasdaq 100 · QQQ</td><td class="down">−1.35%</td><td class="up">+2.10%</td><td>大盘科技拖累</td></tr>
+        <tr><td class="tk">价值 · VTV</td><td class="up">+1.15%</td><td class="up">+2.65%</td><td>风格轮动明显</td></tr>
+      </tbody>
+    </table></div></div>
+    <p><strong>风格判断：</strong>今日是本季度第一次 <strong>价值 &gt; 成长、大盘等权 &gt; 大盘市值加权</strong>的信号级切换，但仍缺乏 5 日以上确认。储能 / 核电 / AI 电力链条在硬件回撤中仍走强，说明 AI 需求本身没有质疑，只是"哪个环节赚钱"的定价在重排。</p>
+  </div>
+
+  <div class="sec" id="s06">
+    <div class="sec-num">Section 06</div>
+    <h2 class="sec-title">市场宽度</h2>
+    <div class="sec-sub">Market Breadth · 参与度与情绪</div>
+
+    <div class="subsec">
+      <div class="subsec-title">6.1 均线参与度</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Universe</th><th>&gt; 20 DMA</th><th>&gt; 50 DMA</th><th>&gt; 100 DMA</th><th>&gt; 200 DMA</th></tr></thead>
+        <tbody>
+          <tr><td class="tk">S&P 500</td><td class="num">54%</td><td class="num">62%</td><td class="num">68%</td><td class="num">75%</td></tr>
+          <tr><td class="tk">Nasdaq 100</td><td class="num">42%</td><td class="num">55%</td><td class="num">61%</td><td class="num">70%</td></tr>
+          <tr><td class="tk">Russell 2000</td><td class="num">48%</td><td class="num">54%</td><td class="num">58%</td><td class="num">61%</td></tr>
+        </tbody>
+      </table></div></div>
+      <p>参与度尚未破位；S&P 500 &gt; 200 DMA 保持 75%，健康区间。Nasdaq 100 短期均线参与度显著弱于 SPX，凸显本次抛售集中在科技。</p>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">6.2 涨跌家数与新高新低</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Exchange</th><th>Advancers</th><th>Decliners</th><th>52W Highs</th><th>52W Lows</th></tr></thead>
+        <tbody>
+          <tr><td class="tk">NYSE</td><td class="num">1,590</td><td class="num">1,428</td><td class="num">72</td><td class="num">38</td></tr>
+          <tr><td class="tk">Nasdaq</td><td class="num">1,824</td><td class="num">2,367</td><td class="num">85</td><td class="num">104</td></tr>
+        </tbody>
+      </table></div></div>
+      <p>NYSE 涨家占优 (1.01:1)，Nasdaq 跌家占优 (1.30:1)。新高/新低差异指向健康的 rotation，而非广谱抛售。</p>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">6.3 情绪与压力指标</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Indicator</th><th>Value</th><th>Chg</th><th>Zone</th></tr></thead>
+        <tbody>
+          <tr><td class="tk">A/D Line (NYSE)</td><td class="num">+162 (5D avg)</td><td class="up">上行</td><td>Healthy</td></tr>
+          <tr><td class="tk">McClellan Oscillator</td><td class="num">+18</td><td class="down">−22</td><td>Neutral</td></tr>
+          <tr><td class="tk">CBOE Put/Call</td><td class="num">0.94</td><td class="up">+0.11</td><td>Slight caution</td></tr>
+          <tr><td class="tk">VIX Term Structure</td><td class="num">+2.1 (contango)</td><td class="down">−0.3</td><td>Normal</td></tr>
+          <tr><td class="tk">MOVE Index</td><td class="num">88.4</td><td class="up">+2.1</td><td>Neutral</td></tr>
+          <tr><td class="tk">HY Credit Spread</td><td class="num">312 bps</td><td class="up">+4</td><td>Tight</td></tr>
+        </tbody>
+      </table></div></div>
+      <p>综合看信用与波动率仍偏舒适，情绪指标从贪婪回到中性。<strong>无系统性风险信号</strong>。</p>
     </div>
   </div>
 
-  <div class="section" id="s13">
-    <h2><span class="n">13</span>明日交易计划</h2>
-    <div class="section-sub">Trading Plan for Tuesday 7/7</div>
-
-    <h3>13.1 宏观观察</h3>
-    <ul>
-      <li>5 月 Consumer Credit（3:00 PM ET，预期 $10.5B）—— 反映家庭信贷需求，若显著低于预期需警惕消费降速。</li>
-      <li>10Y 收益率在 4.35% 的方向选择：跌破 4.30 利好久期资产（长债/公用/REIT/大盘成长）；破 4.42 反弹将压制估值。</li>
-      <li>DXY 是否守住 101 区间。</li>
-    </ul>
-
-    <h3>13.2 大盘观察</h3>
-    <ul>
-      <li>SPX 7,540 突破后的持续性——若站稳，下一目标 7,600；跌破 7,500 需重估。</li>
-      <li>Nasdaq 26,150 前高附近的反应。</li>
-      <li>VIX 是否回落至 16 以下，或反弹至 17.5+（预示 FOMC 纪要前对冲加剧）。</li>
-    </ul>
-
-    <h3>13.3 板块观察</h3>
-    <ul>
-      <li>能源 XLE 是否有超跌反弹，$85 附近是短线支撑。</li>
-      <li>Financials XLF 能否在 GS/MS 被下调后止跌，是宽度扩散的重要信号。</li>
-      <li>Semis SOX/SMH 是否延续，SMH RSI 72 有短线过热风险。</li>
-    </ul>
-
-    <h3>13.4 个股观察</h3>
-    <ul>
-      <li><b>TSLA</b>：$420 上方能否持稳，$389 是本周低点支撑，$437 盘中高是压力。</li>
-      <li><b>NVDA</b>：$160 心理关口，若跑输 SOX，等待 SMH 缓一缓再择机。</li>
-      <li><b>AMD</b>：$250 上方是关键突破位。</li>
-      <li><b>MU</b>：HBM 消息面驱动，$215 上方看下一目标。</li>
-      <li><b>AVGO</b>：$280 突破布局。</li>
-      <li><b>GOOGL / META</b>：领涨 Comm，量能是否放大。</li>
-      <li><b>PLTR</b>：短线过热，$155 上方谨慎追高。</li>
-      <li><b>SMCI / NOW / CRM</b>：AI 软件补涨机会。</li>
-      <li><b>WDC</b>：+7% 后短线回踩 $75 的机会。</li>
-      <li><b>VST / CEG</b>：AI 电力短线钝化，等电力签约新催化。</li>
-      <li><b>XLE 成分（CVX/XOM/OXY）</b>：不追跌，等待 WTI 稳住 $67 再考虑。</li>
-      <li><b>大行（JPM/BAC/GS/MS）</b>：Q2 财报前谨慎；GS/MS 遭下调后短线偏空。</li>
-      <li><b>ITA/防务</b>：延续多头趋势，回踩不破 20DMA 可加。</li>
-      <li><b>PEP</b>：7/9 财报前性价比偏低。</li>
-      <li><b>DAL</b>：7/10 财报前避免重仓。</li>
-    </ul>
+  <div class="sec" id="s07">
+    <div class="sec-num">Section 07</div>
+    <h2 class="sec-title">技术面</h2>
+    <div class="sec-sub">Technicals · 关键指数与 ETF 位置</div>
+    <div class="data-table"><div class="data-table-scroll"><table>
+      <thead><tr><th>Ticker</th><th>Close</th><th>50 DMA</th><th>200 DMA</th><th>RSI(14)</th><th>Trend</th><th>支撑</th><th>压力</th></tr></thead>
+      <tbody>
+        <tr><td class="tk">SPY</td><td class="num">748.30</td><td class="num">741.5</td><td class="num">705.8</td><td class="num">54</td><td>上升</td><td class="num">744 / 738</td><td class="num">755 / 762</td></tr>
+        <tr><td class="tk">QQQ</td><td class="num">601.85</td><td class="num">595.4</td><td class="num">552.2</td><td class="num">51</td><td>上升</td><td class="num">596 / 588</td><td class="num">612 / 620</td></tr>
+        <tr><td class="tk">IWM</td><td class="num">296.10</td><td class="num">293.2</td><td class="num">278.5</td><td class="num">47</td><td>震荡</td><td class="num">293 / 285</td><td class="num">302 / 309</td></tr>
+        <tr><td class="tk">SMH</td><td class="num">328.42</td><td class="num">341.8</td><td class="num">308.5</td><td class="num">36</td><td>破位</td><td class="num">320 / 308</td><td class="num">341 / 350</td></tr>
+        <tr><td class="tk">IGV</td><td class="num">108.65</td><td class="num">106.9</td><td class="num">98.2</td><td class="num">55</td><td>上升</td><td class="num">106 / 102</td><td class="num">112 / 116</td></tr>
+        <tr><td class="tk">XLK</td><td class="num">312.20</td><td class="num">318.5</td><td class="num">294.8</td><td class="num">42</td><td>跌破 50DMA</td><td class="num">308 / 298</td><td class="num">318 / 325</td></tr>
+        <tr><td class="tk">XLC</td><td class="num">148.75</td><td class="num">148.2</td><td class="num">138.5</td><td class="num">50</td><td>震荡</td><td class="num">146 / 142</td><td class="num">152 / 156</td></tr>
+        <tr><td class="tk">XLY</td><td class="num">278.40</td><td class="num">277.8</td><td class="num">262.4</td><td class="num">48</td><td>震荡</td><td class="num">275 / 268</td><td class="num">284 / 290</td></tr>
+      </tbody>
+    </table></div></div>
+    <div class="bullet-list"><ul>
+      <li><strong>SMH 破 50DMA，</strong>RSI 36 进入超卖初期；距 200 DMA (308.5) 仅 6%，是重要观察点。</li>
+      <li><strong>SPY / QQQ 主升趋势仍在，</strong>50 DMA 均未破位；QQQ 在 596 附近为关键短期支撑。</li>
+      <li><strong>IGV (软件) 相对强势，</strong>说明本次不是"AI 结构性拐点"而是"硬件短期出清"。</li>
+      <li><strong>XLK 跌破 50 DMA，</strong>技术面转为中性偏弱，短期可能测试 298。</li>
+    </ul></div>
   </div>
 
-  <div class="section" id="s14">
-    <h2><span class="n">14</span>风险提示</h2>
-    <div class="section-sub">Risk Watch</div>
-    <ul>
-      <li>FOMC 纪要（7/8）若显著偏鹰，利率敏感股与大盘成长将承压。</li>
-      <li>6 月 CPI（7/15）若上行意外，年内 -50 bp 定价将回撤，SPX 有 3-5% 回调空间。</li>
-      <li>Musk "America Party" 事件持续发酵可能拖累 TSLA 估值中枢。</li>
-      <li>OPEC+ 若进一步增产，WTI 有跌破 $65 的风险，能源股加速调整。</li>
-      <li>大行财报（7/14）若出现 NII 疲弱，会对 Financials 板块形成结构压力。</li>
-      <li>Section 122 关税上诉进展若逆转，会对进口商成本预期造成扰动。</li>
-      <li>SOX / SMH 短线 RSI 接近超买，回调空间 -3% ~ -5% 是常态。</li>
-      <li>宽度未同步创新高，若 A/D Line 继续钝化，指数上涨可持续性下降。</li>
-    </ul>
+  <div class="sec" id="s08">
+    <div class="sec-num">Section 08</div>
+    <h2 class="sec-title">个股新闻与异动</h2>
+    <div class="sec-sub">Single-Name Flow · 分层观察</div>
 
-    <h3>14.1 风险等级矩阵</h3>
-    <div class="risk-matrix table-wrap">
-    <table>
-      <thead><tr><th>维度</th><th>等级</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>宏观利率</td><td><span class="pill amber">中</span></td><td>10Y 在 4.30-4.50 震荡，等待 FOMC 与 CPI</td></tr>
-        <tr><td>市场宽度</td><td><span class="pill amber">中</span></td><td>A/D Line 未同步创新高，需扩散</td></tr>
-        <tr><td>AI 拥挤度</td><td><span class="pill red">中高</span></td><td>SMH RSI 72，Mag 7 分化加剧</td></tr>
-        <tr><td>财报风险</td><td><span class="pill amber">中</span></td><td>下周大行财报开季</td></tr>
-        <tr><td>地缘政治</td><td><span class="pill amber">中</span></td><td>Strait 恢复，但中东供应故事仍在</td></tr>
-        <tr><td>技术面</td><td><span class="pill green">低</span></td><td>趋势完整，无重大信号</td></tr>
-        <tr><td>流动性</td><td><span class="pill green">低</span></td><td>MOVE 低位，HY spread 平静</td></tr>
-        <tr><td>政策</td><td><span class="pill amber">中</span></td><td>关税/Section 122 上诉、Musk 政治</td></tr>
-        <tr><td>外汇</td><td><span class="pill green">低</span></td><td>DXY 101 区间</td></tr>
-      </tbody>
-    </table>
+    <div class="subsec">
+      <div class="subsec-title">8.1 Magnificent 7</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Ticker</th><th>Close</th><th>%Chg</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="tk">AAPL</td><td class="num">$248.15</td><td class="down">−0.42%</td><td>相对抗跌，苹果 Vision Pro 生态数据即将发布</td></tr>
+          <tr><td class="tk">MSFT</td><td class="num">$524.60</td><td class="down">−0.85%</td><td>Azure Q2 财报 7/24 前受关注</td></tr>
+          <tr><td class="tk">GOOGL</td><td class="num">$212.85</td><td class="down">−1.32%</td><td>参与 Proxima Fusion 融资，AI 电力叙事延伸</td></tr>
+          <tr><td class="tk">AMZN</td><td class="num">$248.90</td><td class="down">−0.78%</td><td>Prime Day 数据 7/15-16 公布，观察消费韧性</td></tr>
+          <tr><td class="tk">META</td><td class="num">$780.24</td><td class="down">−1.68%</td><td>广告 CPM 数据放缓传闻</td></tr>
+          <tr><td class="tk">NVDA</td><td class="num">$198.42</td><td class="up">+1.05%</td><td>盘中翻红，重上 $198；DeepSeek 影响被官方否认</td></tr>
+          <tr><td class="tk">TSLA</td><td class="num">$412.30</td><td class="down">−2.15%</td><td>Q2 交付超预期后利好兑现</td></tr>
+        </tbody>
+      </table></div></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">8.2 AI 硬件与半导体</div>
+      <div class="bullet-list"><ul>
+        <li><strong>AMAT −9.85% ($535.69)</strong>：WFE 设备三巨头之首，市场担忧 hyperscaler 资本开支 2027 下调。</li>
+        <li><strong>INTC −8.20% ($112.18)</strong>：受 CPU AI 需求承压 + 三星 HBM 竞争双压。</li>
+        <li><strong>LRCX −8.10% ($326.13)</strong>：同 AMAT，先进封装设备承压。</li>
+        <li><strong>KLAC −7.95% ($1,088.40)</strong>：EUV 检测设备，同类估值 de-rating。</li>
+        <li><strong>AMD −7.35% ($513.44)</strong>：MI 系列在 AI 市场的份额提升叙事被 DeepSeek 稀释。</li>
+        <li><strong>MU −7.30% ($142.85)</strong>：与三星 HBM 直接竞争，跟跌是自然反应。</li>
+        <li><strong>WDC −7.10% ($81.55)</strong>：内存与 HDD 双压。</li>
+        <li><strong>ASML −4.20% ($820.75)</strong>：EUV 龙头，受 WFE 传导。</li>
+        <li><strong>AVGO −3.42% ($1,895.40)</strong>：网络芯片相对抗跌，但客户集中度风险浮现。</li>
+        <li><strong>TSM −3.74% ($258.16)</strong>：代工龙头相对稳定，反映 AI 硬件不是需求问题。</li>
+      </ul></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">8.3 软件 / SaaS / AI 应用</div>
+      <div class="bullet-list"><ul>
+        <li><strong>PLTR −2.68% ($182.45)</strong>：AI 应用龙头，估值敏感。</li>
+        <li><strong>CRWD −1.44% ($465.28)</strong>：安全 SaaS，相对稳定。</li>
+        <li><strong>NOW / SNOW / DDOG / MDB</strong>：整体 −1.5% 至 −2.5%，跌幅显著小于硬件。</li>
+        <li><strong>IGV ETF −1.85%</strong>：软件板块回撤温和，反映"应用层"叙事仍完整。</li>
+      </ul></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">8.4 AI 电力 / 数据中心</div>
+      <div class="bullet-list"><ul>
+        <li><strong>CEG +1.85%、VST +1.60%、GEV +1.20%</strong>：核电 + 燃气发电三大主线全数走强。</li>
+        <li><strong>OKLO +3.42%</strong>：小型模块化核反应堆，Alphabet 加码 Proxima 引发 sympathy trade。</li>
+        <li><strong>EOSE +6.72%</strong>：长时储能龙头，Q2 订单指引超预期。</li>
+        <li><strong>WULF +4.86%</strong>：AI 数据中心 REIT 转型标的。</li>
+      </ul></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">8.5 其他显著异动</div>
+      <div class="bullet-list"><ul>
+        <li><strong>RIVN +8.11%</strong>：Q2 交付 15,850 辆，指引全年 55K-60K，超预期。</li>
+        <li><strong>SOLS −15.14%</strong>：下调 FY26 指引 + CFO 离职，业绩与治理双杀。</li>
+        <li><strong>Energy Majors XOM/CVX/COP +2.9-3.5%</strong>：油价溢价直接传导。</li>
+        <li><strong>Health Care 龙头 LLY/UNH +2.0-2.4%</strong>：GLP-1 长期数据 + 高利率避险。</li>
+      </ul></div>
     </div>
   </div>
 
-  <div class="section" id="s15">
-    <h2><span class="n">15</span>最终结论</h2>
-    <div class="section-sub">Final Verdict</div>
-    <div class="card">
-      <p><b>今日市场结论</b>：1) Dow 首破 53K 是里程碑但宽度未跟进，属于窄幅上涨。2) AI 硬件叙事继续"去 NVDA 化"，AMD/MU/AVGO/WDC 成为新的领涨主力。3) 能源被 OPEC+ 增产 + Aramco OSP 下调压制。4) FOMC 纪要（周三）与下周 CPI 是短线关键催化。5) TSLA 的 meme 反弹与 Musk 政治叙事是 Discretionary 板块的独立风险。</p>
-      <p><b>当前市场阶段</b>：<span class="pill green">强趋势 + 部分板块高位震荡 + 局部风险扩散</span>。</p>
-      <p><b>操作倾向</b>：<span class="pill blue">中性偏多观察</span>——保留 AI 硬件多头（AMD/MU/AVGO），谨慎大盘成长追高（QQQ 短线加速），能源不追跌但也不加仓，等待 FOMC 纪要后的确认。</p>
-      <p><b>最值得关注的 5 个信号</b>：</p>
-      <ul>
-        <li><b>1. FOMC 纪要（7/8）</b>：Warsh 主席首次纪要，鹰派/鸽派措辞是短线拐点。</li>
-        <li><b>2. NVDA vs SOX 相对涨跌</b>：NVDA 若继续跑输，AI 硬件叙事重构加速。</li>
-        <li><b>3. 10Y 收益率在 4.30-4.50 区间的方向选择</b>：决定久期资产的强弱。</li>
-        <li><b>4. WTI 是否跌破 $67</b>：决定能源股是否加速调整。</li>
-        <li><b>5. NYSE A/D Line 是否与指数同步创新高</b>：决定行情能否从窄变宽。</li>
-      </ul>
+  <div class="sec" id="s09">
+    <div class="sec-num">Section 09</div>
+    <h2 class="sec-title">财报日历与解读</h2>
+    <div class="sec-sub">Earnings Calendar · 已公布 + 未来 1-3 日</div>
+
+    <div class="subsec">
+      <div class="subsec-title">9.1 已公布关键公司</div>
+      <div class="bullet-list"><ul>
+        <li><strong>Samsung Electronics (Q2)：</strong>营收 74 万亿韩元 (+ 15% YoY)，营业利润 12.13 万亿韩元 (+1,890% YoY)。虽创纪录，但低于卖方一致预期 5%，尤其 HBM3E 出货节奏低于 SK Hynix 优势论。市场解读：AI 硬件 <strong>拐点在于份额，而非需求</strong>。</li>
+        <li><strong>AZZ Inc (盘后)：</strong>EPS $1.72 vs 一致 $1.68，营收 $432M vs $425M，全年指引维持不变。反应平淡。</li>
+      </ul></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">9.2 未来 1-3 日重要财报</div>
+      <div class="data-table"><div class="data-table-scroll"><table>
+        <thead><tr><th>Day</th><th>Ticker</th><th>Name</th><th>Time</th><th>EPS Est</th><th>关注点</th></tr></thead>
+        <tbody>
+          <tr><td class="num">Wed 7/8</td><td class="tk">HELE</td><td>Helen of Troy</td><td>Pre</td><td class="num">$1.15</td><td>消费品定价 + 关税影响</td></tr>
+          <tr><td class="num">Thu 7/9</td><td class="tk">PEP</td><td>PepsiCo</td><td>Pre</td><td class="num">$2.20</td><td>北美饮料量、Frito-Lay 定价、GLP-1</td></tr>
+          <tr><td class="num">Thu 7/9</td><td class="tk">LEVI</td><td>Levi Strauss</td><td>Post</td><td class="num">$0.14</td><td>DTC 复苏、关税敞口</td></tr>
+          <tr><td class="num">Thu 7/9</td><td class="tk">CAG</td><td>Conagra Brands</td><td>Pre</td><td class="num">$0.51</td><td>食品通胀传导</td></tr>
+          <tr><td class="num">Fri 7/10</td><td class="tk">DAL</td><td>Delta Air Lines</td><td>Pre</td><td class="num">$1.44</td><td>Q3 需求前瞻、公司 & 高端客舱</td></tr>
+        </tbody>
+      </table></div></div>
+      <p><strong>PepsiCo 是本周风向标：</strong>如果消费者需求端出现明显放缓的信号，将强化 stagflation 定价，进一步利好防御板块。</p>
+    </div>
+  </div>
+
+  <div class="sec" id="s10">
+    <div class="sec-num">Section 10</div>
+    <h2 class="sec-title">机构观点与资金流</h2>
+    <div class="sec-sub">Institutional Views & Fund Flows</div>
+    <div class="bullet-list"><ul>
+      <li><strong>Goldman Sachs：</strong>维持 S&P 年底目标 7,800（升幅 4%）；上调能源至超配，下调半导体至中性；重申"barbell — quality growth + energy hedge"。</li>
+      <li><strong>Morgan Stanley (Mike Wilson)：</strong>"AI capex peak 可能在 2026 Q4 显现，硬件板块 P/E 面临 2-3 points 压缩空间，软件相对抗跌"。</li>
+      <li><strong>Bank of America：</strong>Fund Managers Survey 显示现金水平升至 4.8%（前 4.5%），仍处正常区间；AI 拥挤度自 5 月高点回落 15%。</li>
+      <li><strong>JPMorgan：</strong>维持"buy the dip on Mag 7"，认为 Nvidia 在 $195 附近有中期支撑；将 Intel 目标价从 $135 下调至 $118。</li>
+      <li><strong>ETF 资金流 (今日估算)：</strong>XLE +$580M、XLV +$420M、XLK −$1.85B（近两个月单日最大流出）、SMH −$620M、SPY +$220M（低吸买盘）。</li>
+      <li><strong>期权异动：</strong>QQQ 7/26 到期 590 put 建仓 $80M；NVDA 7/12 到期 195/205 call spread 大宗成交。</li>
+    </ul></div>
+  </div>
+
+  <div class="sec" id="s11">
+    <div class="sec-num">Section 11</div>
+    <h2 class="sec-title">板块轮动判断</h2>
+    <div class="sec-sub">Rotation Regime · 当前阶段定位</div>
+    <div class="summary-box">
+      <p><strong>当前阶段判断：</strong>AI 主升浪 → <strong>高位钝化 + 高切低轮动</strong>。硬件板块进入首次实质性 de-rating（RSI 从 65 跌至 36），但软件、AI 电力、数据中心叙事完好。</p>
+      <p><strong>资金流向：</strong>从"AI 硬件 → 能源 + 医疗 + 公用事业"的经典 late-cycle rotation。这不是 risk-off，而是 <strong>risk-repricing</strong>。</p>
+      <p><strong>持续性判断：</strong>若 FOMC 会议纪要偏鹰，轮动可延续 2-3 周；若 SOX 守住 200 DMA 附近的 11,600-11,800，会形成"洗盘完成"的买点。</p>
+    </div>
+  </div>
+
+  <div class="sec" id="s12">
+    <div class="sec-num">Section 12</div>
+    <h2 class="sec-title">重点关注股观察</h2>
+    <div class="sec-sub">Watchlist · 分类跟踪 + 标签</div>
+    <div class="data-table"><div class="data-table-scroll"><table>
+      <thead><tr><th>Ticker</th><th>类别</th><th>今日</th><th>状态标签</th></tr></thead>
+      <tbody>
+        <tr><td class="tk">NVDA</td><td>核心 AI</td><td class="up">+1.05%</td><td><span class="tag tag-hold">高位震荡</span></td></tr>
+        <tr><td class="tk">AVGO</td><td>核心 AI</td><td class="down">−3.42%</td><td><span class="tag tag-watch">回踩支撑</span></td></tr>
+        <tr><td class="tk">AMD</td><td>AI 硬件</td><td class="down">−7.35%</td><td><span class="tag tag-risk">短线过热出清</span></td></tr>
+        <tr><td class="tk">TSM</td><td>AI 硬件</td><td class="down">−3.74%</td><td><span class="tag tag-hold">继续观察</span></td></tr>
+        <tr><td class="tk">MU</td><td>存储</td><td class="down">−7.30%</td><td><span class="tag tag-risk">破位风险</span></td></tr>
+        <tr><td class="tk">PLTR</td><td>软件 AI</td><td class="down">−2.68%</td><td><span class="tag tag-hold">高位震荡</span></td></tr>
+        <tr><td class="tk">CRWD</td><td>软件</td><td class="down">−1.44%</td><td><span class="tag tag-strong">继续强势</span></td></tr>
+        <tr><td class="tk">ANET</td><td>光通信</td><td class="down">−2.65%</td><td><span class="tag tag-watch">回踩支撑</span></td></tr>
+        <tr><td class="tk">CEG</td><td>AI 电力</td><td class="up">+1.85%</td><td><span class="tag tag-strong">继续强势</span></td></tr>
+        <tr><td class="tk">VST</td><td>AI 电力</td><td class="up">+1.60%</td><td><span class="tag tag-strong">继续强势</span></td></tr>
+        <tr><td class="tk">OKLO</td><td>核电</td><td class="up">+3.42%</td><td><span class="tag tag-strong">继续强势</span></td></tr>
+        <tr><td class="tk">GEV</td><td>电力设备</td><td class="up">+1.20%</td><td><span class="tag tag-strong">继续强势</span></td></tr>
+      </tbody>
+    </table></div></div>
+  </div>
+
+  <div class="sec" id="s13">
+    <div class="sec-num">Section 13</div>
+    <h2 class="sec-title">明日交易计划</h2>
+    <div class="sec-sub">Trade Plan · 分层观察</div>
+
+    <div class="subsec">
+      <div class="subsec-title">13.1 宏观观察</div>
+      <div class="bullet-list"><ul>
+        <li><strong>14:00 ET FOMC 6 月会议纪要</strong>：关注 (1) 是否有加息表述，(2) Warsh 主席对通胀路径判断，(3) 是否讨论 QT 减速。</li>
+        <li>Wholesale Inventories (May) 10:00 ET，前值 +0.2%。</li>
+        <li>3Y TIPS Auction 结果，观察实际利率定价。</li>
+      </ul></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">13.2 大盘观察</div>
+      <div class="bullet-list"><ul>
+        <li>SPY 关键支撑 744 / 738；压力 755。若下破 738，考虑降 beta。</li>
+        <li>QQQ 596 是关键短期支撑；破位可能进入 3-5 天 -3% 补跌。</li>
+        <li>VIX 若从 15.97 上冲 18，触发风险平价资金减仓。</li>
+      </ul></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">13.3 板块观察</div>
+      <div class="bullet-list"><ul>
+        <li>SMH 是否守住 320 / 308（分别为短期 & 200DMA 支撑）。</li>
+        <li>XLE 观察是否延续 +2%+ 走势，取决于原油能否守住 $70 / $73（WTI/Brent）。</li>
+        <li>XLV 医疗板块能否 3 连涨。</li>
+        <li>XLK 若测试 298，观察成交量是否放大。</li>
+      </ul></div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">13.4 个股观察（10-20 只 + 理由）</div>
+      <div class="bullet-list"><ul>
+        <li><strong>NVDA — $198 支撑守稳</strong>，一旦上破 $205 短期看 $215。</li>
+        <li><strong>AMD — 观察 $505 是否成短期底</strong>，破位下看 $485。</li>
+        <li><strong>AMAT / LRCX / KLAC — 设备三剑客</strong>，若能同步反弹 3%+ 是"洗盘完成"信号。</li>
+        <li><strong>CEG / VST / OKLO — AI 电力主升继续</strong>，Alphabet 加码 Proxima 逻辑传导。</li>
+        <li><strong>XOM / CVX — 能源持仓</strong>，油价 $70 上方持仓，破位止损。</li>
+        <li><strong>PEP — 财报前瞻</strong>（7/9 盘前）；EPS $2.20，跌至 $138-140 是超跌买点。</li>
+        <li><strong>DAL — 财报前瞻</strong>（7/10 盘前），关注 Q3 前瞻是"消费降级"还是"高端韧性"。</li>
+        <li><strong>LLY — GLP-1 龙头</strong>，$780 附近是中期加仓位。</li>
+        <li><strong>UNH — 医疗保险</strong>，突破 $310 关键位，短线看 $325。</li>
+        <li><strong>PLTR — 高位震荡</strong>，$175 是本轮回撤关键支撑。</li>
+        <li><strong>TSLA — Q2 交付利好兑现</strong>，$400 附近是二次进场点。</li>
+        <li><strong>RIVN — 交付超预期</strong>，$18-20 加仓，$22 减仓。</li>
+        <li><strong>ANET — 光通信</strong>，观察 $145 支撑。</li>
+        <li><strong>MU — 内存</strong>，破 $140 是短期止损位。</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="sec" id="s14">
+    <div class="sec-num">Section 14</div>
+    <h2 class="sec-title">风险提示</h2>
+    <div class="sec-sub">Risk Watch · 风险等级矩阵</div>
+    <div class="bullet-list"><ul>
+      <li><strong>Fed 会议纪要偏鹰：</strong>若明日会议纪要出现"部分官员认为需要加息"表述，SPY 可能测试 738。</li>
+      <li><strong>AI 拥挤度延续去杠杆：</strong>SOX 若破 200 DMA (~11,700)，形成 20%+ 高峰回撤。</li>
+      <li><strong>中东地缘扩大：</strong>Brent 突破 $80，将启动 CPI 上行担忧。</li>
+      <li><strong>PepsiCo 财报若弱：</strong>消费板块可能被下调预期。</li>
+      <li><strong>Q3 EPS 一致预期太高：</strong>标普 2026 Q3 EPS 一致目前 +9.5% YoY，任何"高预期低兑现"都可能触发估值调整。</li>
+    </ul></div>
+    <div class="risk-matrix">
+      <div class="risk-item"><span class="risk-name">宏观利率</span><span class="risk-level risk-med">中</span></div>
+      <div class="risk-item"><span class="risk-name">市场宽度</span><span class="risk-level risk-low">低</span></div>
+      <div class="risk-item"><span class="risk-name">AI 拥挤度</span><span class="risk-level risk-high">高</span></div>
+      <div class="risk-item"><span class="risk-name">财报风险</span><span class="risk-level risk-med">中</span></div>
+      <div class="risk-item"><span class="risk-name">地缘政治</span><span class="risk-level risk-high">中高</span></div>
+      <div class="risk-item"><span class="risk-name">技术面</span><span class="risk-level risk-med">中</span></div>
+      <div class="risk-item"><span class="risk-name">流动性</span><span class="risk-level risk-low">低</span></div>
+      <div class="risk-item"><span class="risk-name">政策/关税</span><span class="risk-level risk-med">中</span></div>
+      <div class="risk-item"><span class="risk-name">外汇/USD</span><span class="risk-level risk-low">低</span></div>
+    </div>
+  </div>
+
+  <div class="sec" id="s15">
+    <div class="sec-num">Section 15</div>
+    <h2 class="sec-title">最终结论</h2>
+    <div class="sec-sub">Bottom Line · 综合判断</div>
+    <div class="conclusion-card">
+      <h3 class="conclusion-title">今日市场结论</h3>
+      <p>7 月 7 日的抛售是一次<strong>板块结构性 rotation</strong>，而非系统性 risk-off：VIX 未破 16、10Y 未破 4.50%、信用利差稳定、宽度 7-3。核心事件是 <strong>AI 硬件叙事首次 de-rating</strong> —— 触发点是三星 HBM 高预期未兑现 + DeepSeek 自研芯片报道。</p>
+      <p>油价 +3% 重启地缘溢价，能源、医疗、公用事业、必需消费四大防御板块领涨，构成典型 late-cycle 或 stagflation-hedge 组合。10Y 收益率略降说明避险买盘并未压过通胀溢价。</p>
+      <p><strong>当前市场阶段：</strong></p>
+      <div>
+        <span class="stage-tag">AI 硬件高位钝化</span>
+        <span class="stage-tag">高切低轮动</span>
+        <span class="stage-tag">整体 risk-repricing</span>
+        <span class="stage-tag">宽度健康</span>
+      </div>
+      <p style="margin-top: 20px;"><strong>操作倾向：中性观察</strong>。硬件不追跌、防御不追涨、软件与 AI 电力可逢低加仓；重要参数变化在 7/8 FOMC 会议纪要与 7/9 PepsiCo 财报。</p>
+      <p><strong>最值得关注的 5 个信号：</strong></p>
+      <p>① SOX 是否守住 12,300 / 11,700 双支撑<br>
+      ② Nvidia 是否稳站 $198<br>
+      ③ FOMC 6 月会议纪要中"加息"字样出现频率<br>
+      ④ Brent 是否突破 $75，能源板块能否延续<br>
+      ⑤ PepsiCo Q2 财报中北美饮料量 + Frito-Lay 定价能否验证消费韧性</p>
     </div>
   </div>
 
   <div class="footer">
-    <p>Sources: CNBC · Reuters · Bloomberg · Yahoo Finance · TheStreet · ISM · CME FedWatch · FRED · EIA · Barchart · Oppenheimer · Goldman Sachs · Daiwa · JPMorgan</p>
-    <p>Market Pulse PRO is an editorial daily briefing. Data as of NYSE close 4:00 PM ET, July 6, 2026. Not investment advice.</p>
-    <p>免责声明：本报告仅为市场信息汇编，不构成投资建议。数据以官方来源为准。</p>
+    <p><strong>Sources:</strong> CNBC · Reuters · Bloomberg · TheStreet · Yahoo Finance · CME FedWatch · FRED · Barchart · The Globe and Mail · Federal Reserve</p>
+    <p style="margin-top: 8px;">本报告基于公开信息编制，仅供参考，不构成投资建议。所有数据以官方交易所收盘为准。</p>
+    <p style="margin-top: 8px;">© 2026 Market Pulse · Professional Analyst Briefing · Generated at 4:30 PM ET</p>
   </div>
 </div>
+
 <script>
-function toggleTheme() {
-  var current = document.documentElement.getAttribute('data-theme');
-  var next = current === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('marketPulseTheme', next);
-  document.getElementById('themeBtn').textContent = next === 'dark' ? 'LIGHT · 日间' : 'DARK · 夜间';
-}
 (function(){
-  var cur = document.documentElement.getAttribute('data-theme');
-  var b = document.getElementById('themeBtn');
-  if (b) b.textContent = cur === 'dark' ? 'LIGHT · 日间' : 'DARK · 夜间';
+  var btn = document.getElementById('themeToggle');
+  function apply(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    try{ localStorage.setItem('marketPulseTheme', theme); } catch(e){}
+    btn.textContent = theme === 'dark' ? 'LIGHT · 日间' : 'DARK · 夜间';
+  }
+  var current = document.documentElement.getAttribute('data-theme');
+  if (!current) {
+    current = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  btn.textContent = current === 'dark' ? 'LIGHT · 日间' : 'DARK · 夜间';
+  btn.addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme') || 'light';
+    apply(cur === 'dark' ? 'light' : 'dark');
+  });
 })();
 </script>
 </body>
